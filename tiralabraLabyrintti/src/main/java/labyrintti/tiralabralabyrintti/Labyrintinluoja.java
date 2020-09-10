@@ -21,144 +21,41 @@ public class Labyrintinluoja {
         
         kayty = new boolean[laby.length][laby.length];
         
-        
-//        pino.push(1);
-//                pino.push(2);
-//
-//                        pino.push(3);
-//
-//        
-//        System.out.println(pino.pop());
-//         System.out.println(pino.pop());
-//          System.out.println(pino.pop());
-          
     pino.add(new pari(0,0));
     kayty[0][0] = true;
     while(!pino.isEmpty()){
-    int r = rand.nextInt(4);
+        
+        
+        
     
     pari p = pino.peek();
     
-    switch(r){
-        case 0:
+    String suunnat = "";
+        
+        
+        for (int i = 0; i < 4; i++) {
             
-           if (suunta('o',p)){
-               
-           }
-           
-           else if(suunta('y',p)){
+            if(p.x+3 < uusiLaby.length && !kayty[p.x+3][p.y]) suunnat += 'o';
+            
+              if(p.y-3 >= 0 && !kayty[p.x][p.y-3]) suunnat += 'y';
               
-           }
-           
-           else if(suunta('v',p)){
-               
-           }
-               
-               
-             else if(suunta('a',p)){
-               
-           }
-           
-             else{
-                 pino.pop();
-             }
+                if(p.x-3 >= 0 && !kayty[p.x-3][p.y]) suunnat += 'v';
+                
+                  if(p.y+3 < uusiLaby.length && !kayty[p.x][p.y+3]) suunnat += 'a';
             
             
-            break;
-            
-        case 1:
-           if (suunta('y',p)){
-               
-           }
-           
-           else if(suunta('v',p)){
-              
-           }
-           
-           else if(suunta('a',p)){
-               
-           }
-               
-               
-             else if(suunta('o',p)){
-               
-           }
-           
-             else{
-                 pino.pop();
-             }
-            break;
-            
-        case 2:
-             if (suunta('v',p)){
-               
-           }
-           
-           else if(suunta('a',p)){
-              
-           }
-           
-           else if(suunta('o',p)){
-               
-           }
-               
-               
-             else if(suunta('y',p)){
-               
-           }
-           
-             else{
-                 pino.pop();
-             }
-           
-            break;
-            
-        case 3:
-             if (suunta('a',p)){
-               
-           }
-           
-           else if(suunta('o',p)){
-              
-           }
-           
-           else if(suunta('y',p)){
-               
-           }
-               
-               
-             else if(suunta('v',p)){
-               
-           }
-           
-             else{
-                 pino.pop();
-             }
-            break;
-    }
-    }
-    
-    
-    
-    
-//        for (int i = 0; i < kayty.length; i++) {
-//            
-//            for (int j = 0; j < kayty.length; j++) {
-//                if(kayty[i][j]){
-//                    System.out.print("T ");
-//                }
-//                else{
-//                    System.out.print("E ");
-//                }
-//            }
-//            System.out.println("");
-//            
-//        }
-    
+        }
+                if(suunnat.equals("")){
+                    pino.pop();
+                    continue;
+                }
+        
+            int r = rand.nextInt(suunnat.length());
+    suunta(suunnat.charAt(r), p);
 
-    
-
-    
+        
+    }
+   
         return uusiLaby;
     }
     
@@ -169,8 +66,7 @@ public class Labyrintinluoja {
     
     private boolean suunta(char s,pari p){
         if(s == 'o'){
-            if(p.x+3 < uusiLaby.length){
-            if(!kayty[p.x+3][p.y]){
+         
                 kayty[p.x+3][p.y]=true;
                 pino.add(new pari(p.x+3,p.y));
                 
@@ -178,20 +74,10 @@ public class Labyrintinluoja {
                 poistaSeinat(p.x+2, p.y+1);
                 
                 
-                return true;
-            }
-            
-            return false;
-            
-           
-            
-            }
-            return false;
+              
         }
         
         else if(s=='y'){
-                           if(p.y-3 > 0){
-            if(!kayty[p.x][p.y-3]){
                 kayty[p.x][p.y-3]=true;
                 pino.add(new pari(p.x,p.y-3));
                 
@@ -199,54 +85,33 @@ public class Labyrintinluoja {
                 poistaSeinat(p.x+1, p.y-1);
                 
                 
-                return true;
-
-            }
-            return false;
             
-            }
-                           return false;
         }
         
         else if(s == 'v'){
-                           if(p.x-3 > 0){
-            if(!kayty[p.x-3][p.y]){
                 kayty[p.x-3][p.y]=true;
                 pino.add(new pari(p.x-3,p.y));
                 
                    poistaSeinat(p.x-1, p.y);
                 poistaSeinat(p.x-1, p.y+1);
                 
-                return true;
-
-            }
-            return false;
             
-            }
-                           return false;
             
         }
         
         else if(s=='a'){
-                          if(p.y+3 < uusiLaby.length){
-            if(!kayty[p.x][p.y+3]){
+                        
                 kayty[p.x][p.y+3]=true;
                 pino.add(new pari(p.x,p.y+3));
                 
                    poistaSeinat(p.x, p.y+2);
                 poistaSeinat(p.x+1, p.y+2);
                 
-                return true;
-
-            }
-            return false;
             
-            }
-                           return false;
         }
         
         else{
-            System.out.println("ei oikea suunta");
+            System.out.println(s + " ei oikea suunta");
         }
     return false;}
     

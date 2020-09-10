@@ -10,7 +10,7 @@ public class MainClass {
        Labyrintinluoja ll = new Labyrintinluoja();
        
       
-        Labyrintti l = new Labyrintti(7, 7);
+        Labyrintti l = new Labyrintti(17, 17);
         
         //l.tulostaLabyrintti(l.getLaby());
         
