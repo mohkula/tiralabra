@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 
-import java.util.Arrays;
-import labyrintti.tiralabralabyrintti.Labyrintinluoja;
+import labyrintti.tiralabralabyrintti.Labyrintti;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author mahi
  */
-public class LabyrintinluojaTest extends Labyrintinluoja{
-    Labyrintinluoja ll;
-    public LabyrintinluojaTest() {
+public class LabyrinttiTest {
+    Labyrintti l;
+    public LabyrinttiTest() {
     }
     
     @BeforeClass
@@ -32,10 +31,7 @@ public class LabyrintinluojaTest extends Labyrintinluoja{
     
     @Before
     public void setUp() {
-         ll = new Labyrintinluoja();
-         int[][] laby = new int[3][3];
-         
-         ll.peruuttavaHaku(laby);
+         l = new Labyrintti(3,3);
     }
     
     @After
@@ -48,20 +44,18 @@ public class LabyrintinluojaTest extends Labyrintinluoja{
     // @Test
     // public void hello() {}
     
+    @Test
+    public void labyrinttiOnOikeanKokoinen(){
+        
+        assertEquals(l.getLaby().length, 8);
+        
+    }
+    
     
     @Test
-    public void poistaSeinatToimii(){
-        boolean lopeta = false;
-        for (int i = 0; i < ll.getLaby().length; i++) {
-            for (int j = 0; j < ll.getLaby().length; j++) {
-                if(ll.getLaby()[i][j] == 1){
-                    super.poistaSeinat(i, j);
-                    lopeta = true;
-                    break;
-                }
-            
-            }
-        if(lopeta) break;
-        }
+    public void labyrintissaOnSeinatOikeissaKohdissa(){
+        
+        assertEquals(l.getLaby()[2][1], 1 );
+        assertEquals(l.getLaby()[5][5], 1 );
     }
 }

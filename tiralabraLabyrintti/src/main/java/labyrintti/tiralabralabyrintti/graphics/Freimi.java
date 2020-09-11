@@ -4,7 +4,10 @@ package labyrintti.tiralabralabyrintti.graphics;
 import javax.swing.JFrame;
 import labyrintti.tiralabralabyrintti.MainClass;
 
-
+/**
+ * 
+ * ikkuna johon grafiikat piirretään.
+ */
 public class Freimi extends JFrame {
                  
 

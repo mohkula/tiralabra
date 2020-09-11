@@ -5,6 +5,10 @@ import javax.swing.JPanel;
 import java.awt.*;
 import labyrintti.tiralabralabyrintti.Labyrintinluoja;
 
+/**
+ * 
+ * Labyrintin piirtämiseen tarkoitettu luokka
+ */
 public class Grafiikat extends JPanel {
     
     Graphics2D g2d;

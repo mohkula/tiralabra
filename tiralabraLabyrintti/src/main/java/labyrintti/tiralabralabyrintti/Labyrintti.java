@@ -8,7 +8,7 @@ public class Labyrintti {
     
     
     /**
-     * 
+     * luo labyrinttipohjan 0 = lattia, 1 = seinä
      * 
      * @param width labyrintin leveys
      * @param height labyrintin korkeus

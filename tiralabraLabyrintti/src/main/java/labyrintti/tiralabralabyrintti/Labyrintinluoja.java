@@ -135,7 +135,7 @@ public class Labyrintinluoja {
      * @param x poistettavan seinän x-koordinaatti
      * @param y poistettavan seinän y-koordinaatti
      */
- private void poistaSeinat(int x, int y){
+ protected void poistaSeinat(int x, int y){
 
      
     uusiLaby[x][y] = 0;
