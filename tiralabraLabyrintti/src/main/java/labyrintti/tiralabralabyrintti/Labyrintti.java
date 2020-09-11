@@ -1,13 +1,28 @@
 
 package labyrintti.tiralabralabyrintti;
-
+/**
+ * Labyrinttipohja
+ */
 public class Labyrintti {
     int[][] laby;
+    
+    
+    /**
+     * 
+     * 
+     * @param width labyrintin leveys
+     * @param height labyrintin korkeus
+     */
     public Labyrintti(int width, int height){
         laby = new int[width*3 -1][height*3 - 1];
         LisaaSeinat();
     }
     
+    
+    /**
+     * 
+     * lisää labyrinttiin seinät
+     */
     void LisaaSeinat(){
          for (int i = 0; i < laby.length; i++) {
             for (int j = 0; j < laby.length; j++) {
@@ -21,7 +36,10 @@ public class Labyrintti {
         }
     }
     
-    
+    /**
+     * tulostaa labyrintin
+     * @param laby tulostettava labyrintti 
+     */
     public void tulostaLabyrintti(int[][] laby){
         for (int i = 0; i < laby.length; i++) {
             for (int j = 0; j < laby.length; j++) {
@@ -31,7 +49,10 @@ public class Labyrintti {
         }
     }
     
-    
+    /**
+     * 
+     * @return labyrintti 
+     */
     public int[][] getLaby(){
         return this.laby;
     }

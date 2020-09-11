@@ -2,7 +2,10 @@
 package labyrintti.tiralabralabyrintti;
 import java.util.ArrayDeque;
 import java.util.Random;
-
+/**
+ * 
+ * labyrintin luontiin tarkoitettuja algoritmejä.
+ */
 public class Labyrintinluoja {
     
        ArrayDeque<pari> pino = new ArrayDeque<pari>();
@@ -10,7 +13,11 @@ public class Labyrintinluoja {
        Random rand = new Random();
          int[][] uusiLaby;
        
-    
+    /**
+     * luo labyrintin peruuttavalla haulla.
+     * @param laby labyrinttipohja.
+     * @return peruuttavalla haulla luotu labyrintti.
+     */
     public int[][] peruuttavaHaku(int[][] laby){
          uusiLaby = new int[laby.length][laby.length];
         for (int i = 0; i < uusiLaby.length; i++) {
@@ -59,12 +66,21 @@ public class Labyrintinluoja {
         return uusiLaby;
     }
     
+    
+    /**
+     * palauttaa labyrintin
+     * @return labyrintti.
+     */
     public int[][] getLaby(){
         return uusiLaby;
     }
     
-    
-    private boolean suunta(char s,pari p){
+    /**
+     * hoitaa peruuttavassa haussa tarvittavien tietorakenteiden muokkausta annetun suunnan mukaan.
+     * @param s suunnan kertova merkki
+     * @param p koordinaattipari
+     */
+    private void suunta(char s,pari p){
         if(s == 'o'){
          
                 kayty[p.x+3][p.y]=true;
@@ -113,8 +129,12 @@ public class Labyrintinluoja {
         else{
             System.out.println(s + " ei oikea suunta");
         }
-    return false;}
-    
+    }
+    /**
+     * poistaa labyrintistä seinän 
+     * @param x poistettavan seinän x-koordinaatti
+     * @param y poistettavan seinän y-koordinaatti
+     */
  private void poistaSeinat(int x, int y){
 
      
@@ -126,11 +146,18 @@ public class Labyrintinluoja {
 
 
 
-
+/**
+ * koordinaattien käsittelyä helpottava luokka 
+ *
+ */
 class pari{
     int x,y;
     
-    
+    /**
+     * luo koordinaattiolion
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     */
     public pari(int x,int y){
         this.x = x;
         this.y = y;

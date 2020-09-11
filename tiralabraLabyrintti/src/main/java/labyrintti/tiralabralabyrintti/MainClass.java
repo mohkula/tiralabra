@@ -14,6 +14,7 @@ public class MainClass {
         
         //l.tulostaLabyrintti(l.getLaby());
         
+        
        int[][] jaa =  ll.peruuttavaHaku(l.getLaby());
         Freimi f = new Freimi(320,320, jaa);   
         l.tulostaLabyrintti(jaa);
