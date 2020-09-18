@@ -16,8 +16,9 @@ public class Freimi extends JFrame {
             
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
              Grafiikat g = new Grafiikat(laby);
-            this.add(g);
-            this.setVisible(true);
+               this.setVisible(true);
+           this.add(g);
+          
            
     }
 }
