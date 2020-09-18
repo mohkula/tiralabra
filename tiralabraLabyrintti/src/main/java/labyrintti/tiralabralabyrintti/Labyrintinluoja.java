@@ -1,6 +1,8 @@
 
 package labyrintti.tiralabralabyrintti;
 import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.Random;
 /**
  * 
@@ -8,10 +10,11 @@ import java.util.Random;
  */
 public class Labyrintinluoja {
     
-       ArrayDeque<pari> pino = new ArrayDeque<pari>();
+       Deque<pari> pino = new ArrayDeque<pari>();
        boolean[][] kayty;
        Random rand = new Random();
          int[][] uusiLaby;
+         Labyrintti l = new Labyrintti();
        
     /**
      * luo labyrintin peruuttavalla haulla.
@@ -28,19 +31,22 @@ public class Labyrintinluoja {
         
         kayty = new boolean[laby.length][laby.length];
         
-    pino.add(new pari(0,0));
+    pino.push(new pari(0,0));
     kayty[0][0] = true;
     while(!pino.isEmpty()){
         
         
         
+        for (pari p: pino) {
+            //System.out.print(p.x + " " + p.y);
+           // System.out.println("");
+        }
+    pari p = pino.getFirst();
     
-    pari p = pino.peek();
+        //System.out.println("pinon p koordinaatit: " +  p.x + " "+ p.y);
     
     String suunnat = "";
-        
-        
-        for (int i = 0; i < 4; i++) {
+//l.tulostaLabyrintti(uusiLaby);
             
             if(p.x+3 < uusiLaby.length && !kayty[p.x+3][p.y]) suunnat += 'o';
             
@@ -51,16 +57,24 @@ public class Labyrintinluoja {
                   if(p.y+3 < uusiLaby.length && !kayty[p.x][p.y+3]) suunnat += 'a';
             
             
-        }
+        
                 if(suunnat.equals("")){
-                    pino.pop();
+                  //  System.out.println("ei suuntia" + "\n");
+                    pino.pollFirst();
+                    
+                  // l.tulostaLabyrintti(uusiLaby);
+                 //   System.out.println("");
                     continue;
                 }
+                
+              //  System.out.println(suunnat + "\n");
         
             int r = rand.nextInt(suunnat.length());
+          //  System.out.println(suunnat.charAt(r));
     suunta(suunnat.charAt(r), p);
 
-        
+     //                      l.tulostaLabyrintti(uusiLaby);
+      //  System.out.println("");
     }
    
         return uusiLaby;
@@ -82,9 +96,11 @@ public class Labyrintinluoja {
      */
     private void suunta(char s,pari p){
         if(s == 'o'){
+            
+           // System.out.println("oikealle" + "\n");
          
                 kayty[p.x+3][p.y]=true;
-                pino.add(new pari(p.x+3,p.y));
+                pino.push(new pari(p.x+3,p.y));
                 
                 poistaSeinat(p.x+2, p.y);
                 poistaSeinat(p.x+2, p.y+1);
@@ -94,8 +110,9 @@ public class Labyrintinluoja {
         }
         
         else if(s=='y'){
+           // System.out.println("ylös" + "\n");
                 kayty[p.x][p.y-3]=true;
-                pino.add(new pari(p.x,p.y-3));
+                pino.push(new pari(p.x,p.y-3));
                 
                  poistaSeinat(p.x, p.y-1);
                 poistaSeinat(p.x+1, p.y-1);
@@ -105,8 +122,9 @@ public class Labyrintinluoja {
         }
         
         else if(s == 'v'){
+            //System.out.println("vasemmalle" + "\n");
                 kayty[p.x-3][p.y]=true;
-                pino.add(new pari(p.x-3,p.y));
+                pino.push(new pari(p.x-3,p.y));
                 
                    poistaSeinat(p.x-1, p.y);
                 poistaSeinat(p.x-1, p.y+1);
@@ -116,9 +134,11 @@ public class Labyrintinluoja {
         }
         
         else if(s=='a'){
+            
+           // System.out.println("alas" + "\n");
                         
                 kayty[p.x][p.y+3]=true;
-                pino.add(new pari(p.x,p.y+3));
+                pino.push(new pari(p.x,p.y+3));
                 
                    poistaSeinat(p.x, p.y+2);
                 poistaSeinat(p.x+1, p.y+2);
@@ -127,7 +147,7 @@ public class Labyrintinluoja {
         }
         
         else{
-            System.out.println(s + " ei oikea suunta");
+           // System.out.println(s + " ei oikea suunta");
         }
     }
     /**
@@ -138,7 +158,7 @@ public class Labyrintinluoja {
  protected void poistaSeinat(int x, int y){
 
      
-    uusiLaby[x][y] = 0;
+    uusiLaby[y][x] = 0;
 }
     
     

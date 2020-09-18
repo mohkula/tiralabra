@@ -14,8 +14,8 @@ public class Grafiikat extends JPanel {
     
     Graphics2D g2d;
    int[][] laby;
-   int width= 10;// 
-    int height = 10;
+   int width= 5;// 
+    int height = 5;
     int wall = 2;
     
     
@@ -37,7 +37,6 @@ public class Grafiikat extends JPanel {
 //        g2d.fillRect(11, 11, width, height);
 //            System.out.println(0);
 //g2d.fillRect(11+width+2, 11, width, height);
-System.out.println((laby.length)*(width+wall) + "\n");
 
 //Labyrintti l = new Labyrintti(2,2);
 //l.tulostaLabyrintti(laby);
@@ -62,7 +61,6 @@ System.out.println((laby.length)*(width+wall) + "\n");
 //             }
 //         }
 
-System.out.println(laby[3][2]);
 int screencoordinatex = 0;
                      int screencoordinatey = 0;
          for (int y = 0; y < laby.length; y++) {
@@ -82,7 +80,6 @@ int screencoordinatex = 0;
              screencoordinatex = 0;
           screencoordinatey += width + 2;}
         
-         System.out.println(wc);
        
 
      }

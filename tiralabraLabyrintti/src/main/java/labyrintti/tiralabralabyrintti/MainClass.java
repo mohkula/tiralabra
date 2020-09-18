@@ -10,14 +10,15 @@ public class MainClass {
        Labyrintinluoja ll = new Labyrintinluoja();
        
       
-        Labyrintti l = new Labyrintti(20, 20);
+        Labyrintti l = new Labyrintti();
+        l.luoUusiLabyrintti(32, 32);
         
         //l.tulostaLabyrintti(l.getLaby());
         
         
        int[][] jaa =  ll.peruuttavaHaku(l.getLaby());
-        Freimi f = new Freimi(1120,1120, jaa);   
-        l.tulostaLabyrintti(jaa);
+        Freimi f = new Freimi(1520,1520, jaa);   
+       // l.tulostaLabyrintti(jaa);
         
     }
 }

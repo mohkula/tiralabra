@@ -31,7 +31,8 @@ public class LabyrinttiTest {
     
     @Before
     public void setUp() {
-         l = new Labyrintti(3,3);
+         l = new Labyrintti();
+         l.luoUusiLabyrintti(3, 3);
     }
     
     @After

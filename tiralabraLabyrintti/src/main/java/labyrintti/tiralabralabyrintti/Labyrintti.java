@@ -6,18 +6,22 @@ package labyrintti.tiralabralabyrintti;
 public class Labyrintti {
     int[][] laby;
     
+
+    public Labyrintti(){
+       
+    }
     
+        
     /**
      * luo labyrinttipohjan 0 = lattia, 1 = seinä
      * 
      * @param width labyrintin leveys
      * @param height labyrintin korkeus
      */
-    public Labyrintti(int width, int height){
-        laby = new int[width*3 -1][height*3 - 1];
+    public void luoUusiLabyrintti(int width, int height){
+         laby = new int[width*3 -1][height*3 - 1];
         LisaaSeinat();
     }
-    
     
     /**
      * 
