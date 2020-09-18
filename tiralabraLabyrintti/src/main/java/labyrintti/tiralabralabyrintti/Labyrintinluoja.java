@@ -95,10 +95,9 @@ public class Labyrintinluoja {
      * @param s suunnan kertova merkki
      * @param p koordinaattipari
      */
-    private void suunta(final char s, final pari p) {
+    protected void suunta(final char s, final pari p) {
         if (s == 'o') {
 
-            // System.out.println("oikealle" + "\n");
             kayty[p.x + 3][p.y] = true;
             pino.push(new pari(p.x + 3, p.y));
 
@@ -106,7 +105,6 @@ public class Labyrintinluoja {
             poistaSeinat(p.x + 2, p.y + 1);
 
         } else if (s == 'y') {
-            // System.out.println("ylös" + "\n");
             kayty[p.x][p.y - 3] = true;
             pino.push(new pari(p.x, p.y - 3));
 
@@ -114,7 +112,6 @@ public class Labyrintinluoja {
             poistaSeinat(p.x + 1, p.y - 1);
 
         } else if (s == 'v') {
-            //System.out.println("vasemmalle" + "\n");
             kayty[p.x - 3][p.y] = true;
             pino.push(new pari(p.x - 3, p.y));
 
@@ -123,7 +120,6 @@ public class Labyrintinluoja {
 
         } else if (s == 'a') {
 
-            // System.out.println("alas" + "\n");
             kayty[p.x][p.y + 3] = true;
             pino.push(new pari(p.x, p.y + 3));
 
@@ -144,6 +140,10 @@ public class Labyrintinluoja {
     protected void poistaSeinat(int x, int y) {
 
         uusiLaby[y][x] = 0;
+    }
+    
+    protected Deque getPino(){
+        return pino;
     }
 
 }

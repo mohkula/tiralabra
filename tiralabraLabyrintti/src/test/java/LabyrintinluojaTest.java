@@ -5,6 +5,7 @@
  */
 
 import java.util.Arrays;
+import java.util.Deque;
 import labyrintti.tiralabralabyrintti.Labyrintinluoja;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -66,4 +67,10 @@ public class LabyrintinluojaTest extends Labyrintinluoja {
             }
         }
     }
+    
+    
+    
 }
+
+
+
