@@ -17,27 +17,29 @@ import static org.junit.Assert.*;
  *
  * @author mahi
  */
-public class LabyrintinluojaTest extends Labyrintinluoja{
+public class LabyrintinluojaTest extends Labyrintinluoja {
+
     Labyrintinluoja ll;
+
     public LabyrintinluojaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-         ll = new Labyrintinluoja();
-         int[][] laby = new int[3][3];
-         
-         ll.peruuttavaHaku(laby);
+        ll = new Labyrintinluoja();
+        int[][] laby = new int[3][3];
+
+        ll.peruuttavaHaku(laby);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,21 +49,21 @@ public class LabyrintinluojaTest extends Labyrintinluoja{
     //
     // @Test
     // public void hello() {}
-    
-    
     @Test
-    public void poistaSeinatToimii(){
+    public void poistaSeinatToimii() {
         boolean lopeta = false;
         for (int i = 0; i < ll.getLaby().length; i++) {
             for (int j = 0; j < ll.getLaby().length; j++) {
-                if(ll.getLaby()[i][j] == 1){
+                if (ll.getLaby()[i][j] == 1) {
                     super.poistaSeinat(i, j);
                     lopeta = true;
                     break;
                 }
-            
+
             }
-        if(lopeta) break;
+            if (lopeta) {
+                break;
+            }
         }
     }
 }
