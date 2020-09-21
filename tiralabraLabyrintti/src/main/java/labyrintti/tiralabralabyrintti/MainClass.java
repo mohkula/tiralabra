@@ -9,9 +9,11 @@ public class MainClass {
         Labyrintinluoja ll = new Labyrintinluoja();
 
         Labyrintti l = new Labyrintti();
-        l.luoUusiLabyrintti(32, 32);
+        l.luoUusiLabyrintti(12, 12);
 
-        int[][] jaa = ll.peruuttavaHaku(l.getLaby());
+        int[][] jaa = ll.prim(l.getLaby());
+        
+//        int[][] jaa = ll.peruuttavaHaku(l.getLaby());
         Freimi f = new Freimi(1520, 1520, jaa); 
         
 
