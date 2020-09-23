@@ -17,15 +17,20 @@ public class Grafiikat extends JPanel {
     int height = 5;
     int wall = 2;
 
-    int fc = 0;
-    int wc = 0;
-
+   
+Labyrintti l = new Labyrintti();
     public Grafiikat(int[][] laby) {
         this.laby = laby;
     }
 
     public void paintComponent(Graphics g) {
 
+        
+        
+        
+//        System.out.println();
+//        l.tulostaLabyrintti(laby);
+//         System.out.println();
         super.paintComponent(g);
         this.setBackground(Color.blue);
 
@@ -37,18 +42,18 @@ public class Grafiikat extends JPanel {
         for (int y = 0; y < laby.length; y++) {
             for (int x = 0; x < laby.length; x++) {
 
-                if (laby[x][y] == 0) {
+                if (laby[y][x] == 0) {
                     g2d.setColor(Color.white);
-                    g2d.fillRect(screencoordinatey, screencoordinatex, width, height);
+                    g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
                 } else {
-                    wc++;
+                    
                     g2d.setColor(Color.gray);
-                    g2d.fillRect(screencoordinatey, screencoordinatex, width, height);
+                    g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
                 }
-                screencoordinatex += height + 2;
+                screencoordinatex += width + 2;
             }
             screencoordinatex = 0;
-            screencoordinatey += width + 2;
+            screencoordinatey += height + 2;
         }
 
     }

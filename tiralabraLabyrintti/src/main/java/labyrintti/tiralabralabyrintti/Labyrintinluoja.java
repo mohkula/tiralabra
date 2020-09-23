@@ -90,6 +90,7 @@ public class Labyrintinluoja {
     }
     
     
+    
     /**
      * 
      * Luo labyrintin Primin algoritmillä.
@@ -118,7 +119,6 @@ public class Labyrintinluoja {
         
         
         lisaaEtuun(k, tilat, etu);
-//l.tulostaLabyrintti(uusiLaby);
 
             
             while(!etu.isEmpty()){
@@ -177,7 +177,13 @@ public class Labyrintinluoja {
         
     }
     
-    
+    /**
+     * Lisää koordinaatin k ympärillä olevat käymättömät solut "eturintamaan"
+     * 
+     * @param k koordinaatti
+     * @param tilat tilaMatriisi, joka kertoo labyrinttien solujen tilat
+     * @param etu lista "eturintamassa olevista koordinaateista"
+     */
     public void lisaaEtuun(Koordinaatit k, int[][] tilat, ArrayList<Koordinaatit> etu){
         
         
@@ -215,7 +221,14 @@ public class Labyrintinluoja {
         
     }
     
-    
+    /**
+     * poistaa seinät labyrintin kahden solun välillä, luoden niiden välille yhteyden.
+     * 
+     * 
+     * @param s merkki, joka kertoo mihin suuntaan annetusta koordinaatista luodaan yhteys
+     * @param k labyrinttikoordinaatti, josta lähdetään luomaan yhteyttä
+     * @param prim labyrintti, joka on kyseessä
+     */
     public void lisaaSolu(char s, Koordinaatit k, int[][] prim){
         
          if (s == 'o') {
@@ -250,9 +263,10 @@ public class Labyrintinluoja {
     
 
     /**
-     * palauttaa labyrintin.
-     *
-     * @return labyrintti.
+     * palauttaa joko primin algoritmillä tai peruuttavalla haulla generoidun labyrintin
+     * 
+     * @param merkki, joka kertoo kumpi labyrintti palautetaan r = peruuttavalla haulla p = primin algoritmillä
+     * @return labyrintti
      */
     public int[][] getLaby(char c) {
         

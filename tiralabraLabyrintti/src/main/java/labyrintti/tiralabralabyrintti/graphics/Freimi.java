@@ -9,9 +9,9 @@ import labyrintti.tiralabralabyrintti.MainClass;
  */
 public class Freimi extends JFrame {
 
-    public Freimi(int width, int height, int[][] laby) {
+    public Freimi(int width, int height, int[][] laby, int x, int y) {
         this.setSize(width, height);
-
+this.setLocation(x, y);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Grafiikat g = new Grafiikat(laby);
         this.setVisible(true);
