@@ -21,23 +21,40 @@ public class Grafiikat extends JPanel {
 Labyrintti l = new Labyrintti();
     public Grafiikat(int[][] laby) {
         this.laby = laby;
+        
     }
 
     public void paintComponent(Graphics g) {
 
         
         
-        
-//        System.out.println();
-//        l.tulostaLabyrintti(laby);
-//         System.out.println();
+
         super.paintComponent(g);
         this.setBackground(Color.blue);
 
         g2d = (Graphics2D) g;
         g2d.setColor(Color.white);
 
-        int screencoordinatex = 0;
+//        int screencoordinatex = 0;
+//        int screencoordinatey = 0;
+//        for (int y = 0; y < laby.length; y++) {
+//            for (int x = 0; x < laby.length; x++) {
+//
+//                if (laby[y][x] == 0) {
+//                    g2d.setColor(Color.white);
+//                    g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
+//                } else {
+//                    
+//                    g2d.setColor(Color.gray);
+//                    g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
+//                }
+//                screencoordinatex += width + 2;
+//            }
+//            screencoordinatex = 0;
+//            screencoordinatey += height + 2;
+//        }
+
+    int screencoordinatex = 0;
         int screencoordinatey = 0;
         for (int y = 0; y < laby.length; y++) {
             for (int x = 0; x < laby.length; x++) {
@@ -45,15 +62,20 @@ Labyrintti l = new Labyrintti();
                 if (laby[y][x] == 0) {
                     g2d.setColor(Color.white);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
-                } else {
+                } else if(laby[y][x] == 1){
                     
                     g2d.setColor(Color.gray);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
                 }
-                screencoordinatex += width + 2;
+                
+                else{
+                     g2d.setColor(Color.red);
+                    g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
+                }
+                screencoordinatex += width ;
             }
             screencoordinatex = 0;
-            screencoordinatey += height + 2;
+            screencoordinatey += height;
         }
 
     }

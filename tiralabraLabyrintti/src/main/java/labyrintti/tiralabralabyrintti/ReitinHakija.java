@@ -6,15 +6,91 @@ import java.util.Queue;
 public class ReitinHakija {
     
 Labyrintti l = new Labyrintti();
+int[][] reittiLaby;
     public ReitinHakija(){
         
     }
     
     
+    public int[][] LuoReittiLaby(int[][] laby, String reitti,int x, int y){
+        reittiLaby = new int[laby.length][laby.length];
+        for (int i = 0; i < laby.length; i++) {
+            for (int j = 0; j < laby.length; j++) {
+                reittiLaby[i][j] = laby[i][j];
+                
+            }
+        }
+        
+        for (int i = 0; i < reitti.length(); i++) {
+            switch(reitti.charAt(i)){
+                
+                case 'o':
+                    for (int i2 = 0; i2 < 3; i2++) {
+                    reittiLaby[y][x] = 3;
+                    reittiLaby[y+1][x] = 3;
+                    x++;
+                    }
+                        reittiLaby[y][x] = 3;
+                    reittiLaby[y+1][x] = 3;
+                      reittiLaby[y][x+1] = 3;
+                    reittiLaby[y+1][x+1] = 3;
+                   
+                    
+                    break;
+                    
+                    case 'y':
+                        
+                      
+                 for (int i2 = 0; i2 < 3; i2++) {
+                    reittiLaby[y][x] = 3;
+                    reittiLaby[y][x+1] = 3;
+                    y--;
+                    }
+                
+                 
+                    break;
+                    
+                    case 'v':
+                      
+                for (int i2 = 0; i2 < 3; i2++) {
+                    reittiLaby[y][x] = 3;
+                    reittiLaby[y+1][x] = 3;
+                    x--;
+                    }
+              
+                    break;
+                    
+                    case 'a':
+                   for (int i2 = 0; i2 < 3; i2++) {
+                    reittiLaby[y][x] = 3;
+                    reittiLaby[y][x+1] = 3;
+                    y++;
+                    }
+                       reittiLaby[y][x] = 3;
+                    reittiLaby[y][x+1] = 3;
+                   reittiLaby[y+1][x] = 3;
+                     reittiLaby[y+1][x+1] = 3;
+          
+                  
+                    break;
+                
+            }
+            
+            
+        }
+    return reittiLaby;
+    
+    
+    }
+    
+    
+   
+    
+    
     
     public String HaeReittiLeveysHaulla(int x, int y, int[][] laby, int maaliX, int maaliY){
         
-        //l.tulostaLabyrintti(laby);
+        
         
         if(laby[y][x] == 1 || laby[maaliY][maaliX] == 1) return null;
         

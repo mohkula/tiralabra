@@ -9,13 +9,21 @@ import labyrintti.tiralabralabyrintti.MainClass;
  */
 public class Freimi extends JFrame {
 
-    public Freimi(int width, int height, int[][] laby, int x, int y) {
+    public Freimi(int width, int height, int x, int y) {
         this.setSize(width, height);
 this.setLocation(x, y);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Grafiikat g = new Grafiikat(laby);
-        this.setVisible(true);
-        this.add(g);
+        //Grafiikat g = new Grafiikat(laby);
+       // this.setVisible(true);
+        //this.add(g);
 
+    }
+    
+    
+    public void updateGraphics(int[][] laby){
+       
+          Grafiikat g = new Grafiikat(laby);
+        this.add(g);
+         this.setVisible(true);
     }
 }

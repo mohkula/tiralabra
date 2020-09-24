@@ -29,18 +29,19 @@ public class Labyrintinluoja {
      * @param laby labyrinttipohja.
      * @return peruuttavalla haulla luotu labyrintti.
      */
-    public int[][] peruuttavaHaku(final int[][] laby) {
+    public int[][] peruuttavaHaku(int width, int height) {
         
         pino = new ArrayDeque<Koordinaatit>();
-        
-        peruuttava = new int[laby.length][laby.length];
+       l.luoUusiLabyrintti(width, height);
+       
+        peruuttava = new int[l.getLaby().length][l.getLaby().length];
         for (int i = 0; i < peruuttava.length; i++) {
             for (int j = 0; j < peruuttava.length; j++) {
-                peruuttava[i][j] = laby[i][j];
+                peruuttava[i][j] = l.getLaby()[i][j];
             }
         }
 
-         boolean[][] kayty = new boolean[laby.length][laby.length];
+         boolean[][] kayty = new boolean[l.getLaby().length][l.getLaby().length];
 
         pino.push(new Koordinaatit(0, 0));
         kayty[0][0] = true;
@@ -99,8 +100,9 @@ public class Labyrintinluoja {
      * @param laby labyrinttipohja
      * @return Primin algoritmillä luotu labyrintti 
      */
-    public int[][] prim(final int[][] laby){
-        
+    public int[][] prim(int width, int height){
+        l.luoUusiLabyrintti(width, height);
+        int[][] laby = l.getLaby();
          
         prim = new int[laby.length][laby.length];
         for (int i = 0; i < prim.length; i++) {
