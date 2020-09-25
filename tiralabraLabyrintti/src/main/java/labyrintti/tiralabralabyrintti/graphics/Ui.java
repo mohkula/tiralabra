@@ -85,7 +85,7 @@ panel.setLayout(null);
        fr.updateGraphics(rh.LuoReittiLaby(laby, r, 0, 0));
           
         
-        reitti.setText(r);
+        reitti.setText("reitin pituus: " + Integer.toString(r.length()));
           }
         });
         

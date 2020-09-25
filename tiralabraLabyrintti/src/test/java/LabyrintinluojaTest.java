@@ -41,8 +41,8 @@ public class LabyrintinluojaTest extends Labyrintinluoja {
         l.luoUusiLabyrintti(3, 3);
         ll = new Labyrintinluoja();
 
-        ll.peruuttavaHaku(l.getLaby());
-        ll.prim(l.getLaby());
+        ll.peruuttavaHaku(3,3);
+        ll.prim(3,3);
     }
 
     @After

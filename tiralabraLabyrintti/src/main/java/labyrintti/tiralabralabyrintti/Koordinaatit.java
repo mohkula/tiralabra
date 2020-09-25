@@ -1,4 +1,3 @@
-
 package labyrintti.tiralabralabyrintti;
 
 /**
@@ -6,7 +5,8 @@ package labyrintti.tiralabralabyrintti;
  *
  */
 public class Koordinaatit {
-     int x, y;
+
+    int x, y;
 
     /**
      * luo koordinaattiolion
