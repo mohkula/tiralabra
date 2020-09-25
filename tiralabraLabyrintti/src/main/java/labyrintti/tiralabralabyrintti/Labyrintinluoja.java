@@ -12,23 +12,31 @@ import java.util.ArrayList;
  */
 public class Labyrintinluoja {
 
+    /**
+     * Pino koordinaateille.
+     */
     private Deque<Koordinaatit> pino;
 
     private Random rand = new Random();
-
+    /**
+     * Peruuttavalla haulla generoitu labyrintti.
+     */
     private int[][] peruuttava;
+
+    /**
+     * Primin algoritmillä generoitu labyrintti.
+     */
     private int[][] prim;
 
-    private Labyrintti l = new Labyrintti();
+    private final Labyrintti l = new Labyrintti();
 
-   
-   /**
-    * luo labyrintin peruuttavalla haulla.
-    * 
-    * @param width labyrintin leveys
-    * @param height labyrintin korkeus
-    * @return peruuttavalla haulla luotu labyrintti
-    */
+    /**
+     * luo labyrintin peruuttavalla haulla.
+     *
+     * @param width labyrintin leveys
+     * @param height labyrintin korkeus
+     * @return peruuttavalla haulla luotu labyrintti
+     */
     public int[][] peruuttavaHaku(int width, int height) {
 
         pino = new ArrayDeque<Koordinaatit>();
@@ -83,12 +91,11 @@ public class Labyrintinluoja {
 
     /**
      * Luo labyrintin Primin algoritmillä.
-     * 
+     *
      * @param width labyrintin leveys
      * @param height labyrintin korkeus
      * @return primin algoritmillä luotu labyrintti
      */
-    
     public int[][] prim(int width, int height) {
         l.luoUusiLabyrintti(width, height);
         int[][] laby = l.getLaby();
@@ -111,49 +118,31 @@ public class Labyrintinluoja {
 
         while (!etu.isEmpty()) {
             int r = rand.nextInt(etu.size());
-
             Koordinaatit uusiSolu = etu.get(r);
-
             tilat[uusiSolu.x][uusiSolu.y] = 1;
-
             etu.remove(r);
-
             lisaaEtuun(uusiSolu, tilat, etu);
-
             String suunnat = "";
-
             if (uusiSolu.x + 3 < prim.length && tilat[uusiSolu.x + 3][uusiSolu.y] == 1) {
                 suunnat += 'o';
-
             }
-
             if (uusiSolu.y - 3 >= 0 && tilat[uusiSolu.x][uusiSolu.y - 3] == 1) {
                 suunnat += 'y';
-
             }
-
             if (uusiSolu.x - 3 >= 0 && tilat[uusiSolu.x - 3][uusiSolu.y] == 1) {
                 suunnat += 'v';
-
             }
-
             if (uusiSolu.y + 3 < prim.length && tilat[uusiSolu.x][uusiSolu.y + 3] == 1) {
                 suunnat += 'a';
-
             }
-
             r = rand.nextInt(suunnat.length());
-
             lisaaSolu(suunnat.charAt(r), uusiSolu, prim);
-
         }
-
         return prim;
-
     }
 
     /**
-     * Lisää koordinaatin k ympärillä olevat käymättömät solut arraylistiin
+     * Lisää koordinaatin k ympärillä olevat käymättömät solut arraylistiin.
      *
      * @param k koordinaatti
      * @param tilat tilaMatriisi, joka kertoo labyrinttien solujen tilat
@@ -162,7 +151,6 @@ public class Labyrintinluoja {
     public void lisaaEtuun(Koordinaatit k, int[][] tilat, ArrayList<Koordinaatit> etu) {
 
         if (k.x + 3 < prim.length && tilat[k.x + 3][k.y] == 0) {
-     
 
             etu.add(new Koordinaatit(k.x + 3, k.y));
             tilat[k.x + 3][k.y] = 2;
@@ -226,15 +214,16 @@ public class Labyrintinluoja {
         }
 
     }
+    
+    
 
-    /**
-     * palauttaa joko primin algoritmillä tai peruuttavalla haulla generoidun
-     * labyrintin
-     *
-     * @param merkki, joka kertoo kumpi labyrintti palautetaan r = peruuttavalla
-     * haulla p = primin algoritmillä
-     * @return labyrintti
-     */
+  /**
+   * Palauttaa joko primin algoritmillä tai peruuttavalla haulla generoidun
+   * labyrintin.
+   * 
+   * @param c merkki joka kertoo mikä labyrintti palautetaan.
+   * @return labyrintti
+   */
     public int[][] getLaby(char c) {
 
         if (c == 'r') {

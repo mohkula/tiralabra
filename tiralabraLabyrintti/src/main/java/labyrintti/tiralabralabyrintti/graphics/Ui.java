@@ -25,7 +25,7 @@ JLabel reitti;
  Labyrintinluoja ll;
       ReitinHakija rh;
 
-Freimi fr = new Freimi(380, 380,1000,0);
+Freimi fr = new Freimi(380, 380, 1000, 0);
     public Ui(){
         
         ll = new Labyrintinluoja();
@@ -80,9 +80,9 @@ panel.setLayout(null);
           public void actionPerformed(ActionEvent arg0) {
 
     int[][] laby = ll.getLaby(mikaLaby);
-                  String   r = rh.HaeReittiLeveysHaulla(0, 0, laby, laby.length-2,laby.length-2);
+                  String   r = rh.haeReittiLeveysHaulla(0, 0, laby, laby.length - 2,laby.length - 2);
 
-       fr.updateGraphics(rh.LuoReittiLaby(laby, r, 0, 0));
+       fr.updateGraphics(rh.luoReittiLaby(laby, r, 0, 0));
           
         
         reitti.setText("reitin pituus: " + Integer.toString(r.length()));

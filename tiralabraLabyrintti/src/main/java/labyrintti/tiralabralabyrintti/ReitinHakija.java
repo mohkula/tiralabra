@@ -7,8 +7,8 @@ import omatTietorakenteet.Jono;
 
 public class ReitinHakija {
 
-    Labyrintti l = new Labyrintti();
-    int[][] reittiLaby;
+    private Labyrintti l = new Labyrintti();
+    private int[][] reittiLaby;
 
     public ReitinHakija() {
 
@@ -23,7 +23,7 @@ public class ReitinHakija {
      * @param y reitin alun y-koordinaatti
      * @return labyrintti, johon reitti on merkattu numerolla 3
      */
-    public int[][] LuoReittiLaby(int[][] laby, String reitti, int x, int y) {
+    public int[][] luoReittiLaby(int[][] laby, String reitti, int x, int y) {
         reittiLaby = new int[laby.length][laby.length];
         for (int i = 0; i < laby.length; i++) {
             for (int j = 0; j < laby.length; j++) {
@@ -80,6 +80,8 @@ public class ReitinHakija {
                     reittiLaby[y + 1][x + 1] = 3;
 
                     break;
+                    
+                    
 
             }
 
@@ -98,7 +100,7 @@ public class ReitinHakija {
      * @param maaliY maalin y-koordinaatti
      * @return reitti merkkijonona
      */
-    public String HaeReittiLeveysHaulla(int x, int y, int[][] laby, int maaliX, int maaliY) {
+    public String haeReittiLeveysHaulla(int x, int y, int[][] laby, int maaliX, int maaliY) {
 
         if (laby[y][x] == 1 || laby[maaliY][maaliX] == 1) {
             return null;
@@ -177,7 +179,8 @@ k = (Kulkija)o;
  */
 class Kulkija {
 
-    int x, y;
+    int x; 
+    int y;
     String reitti;
 
     public Kulkija(int x, int y) {
