@@ -1,10 +1,9 @@
 package labyrintti.tiralabralabyrintti;
 
-//import java.util.LinkedList;
 
 import omatTietorakenteet.Jono;
 
-//import java.util.Queue;
+
 
 public class ReitinHakija {
 
