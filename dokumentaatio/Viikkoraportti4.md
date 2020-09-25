@@ -6,5 +6,5 @@ parantelin labyrinttien graafista näkymää. Tein paketin omille tietorakenteil
 toteutin sinne jonon.
 Seuraavalla viikolla olisi tarkoitus luoda lisää omia tietorakenteita sekä vertailla 
 primin algoritmillä ja peruuttavalla haulla generoituja labyrinttejä keskenään 
-suuremmilla syötteillä.
+suuremmilla syötteillä. Aikaa kului tällä viikolla 7.5 tuntia.
 
