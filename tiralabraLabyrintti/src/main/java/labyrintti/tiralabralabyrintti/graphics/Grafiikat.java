@@ -13,16 +13,16 @@ public class Grafiikat extends JPanel {
 
     Graphics2D g2d;
     int[][] laby;
-    int width = 5;// 
-    int height = 5;
+    int width;
+    int height;
     int wall = 2;
 
     Labyrintti l = new Labyrintti();
 
-    public Grafiikat(int[][] laby) {
+    public Grafiikat(int[][] laby , int freimix, int freimiy) {
         this.laby = laby;
-        width = 500/laby.length;
-        height = 500/laby.length;
+        width = freimix/laby.length;
+        height = freimiy/laby.length;
     }
 
     public void paintComponent(Graphics g) {
