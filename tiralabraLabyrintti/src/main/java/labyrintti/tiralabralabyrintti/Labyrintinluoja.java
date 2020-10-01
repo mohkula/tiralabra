@@ -1,10 +1,10 @@
 package labyrintti.tiralabralabyrintti;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+
 import java.util.Random;
 
 import java.util.ArrayList;
+import omatTietorakenteet.Pino;
 
 /**
  *
@@ -15,7 +15,9 @@ public class Labyrintinluoja {
     /**
      * Pino koordinaateille.
      */
-    private Deque<Koordinaatit> pino;
+    //private Deque<Koordinaatit> pino;
+    private Pino pino;
+    private final int labyAskel = 3;
 
     private Random rand = new Random();
     /**
@@ -30,6 +32,10 @@ public class Labyrintinluoja {
 
     private final Labyrintti l = new Labyrintti();
 
+
+    private int suurinPinonKoko;
+
+
     /**
      * luo labyrintin peruuttavalla haulla.
      *
@@ -37,9 +43,9 @@ public class Labyrintinluoja {
      * @param height labyrintin korkeus
      * @return peruuttavalla haulla luotu labyrintti
      */
-    public int[][] peruuttavaHaku(int width, int height) {
-
-        pino = new ArrayDeque<Koordinaatit>();
+    public int[][] peruuttavaHaku(final int width, final int height) {
+suurinPinonKoko = 0;
+        pino = new Pino(width * height);
         l.luoUusiLabyrintti(width, height);
 
         peruuttava = new int[l.getLaby().length][l.getLaby().length];
@@ -51,32 +57,37 @@ public class Labyrintinluoja {
 
         boolean[][] kayty = new boolean[l.getLaby().length][l.getLaby().length];
 
-        pino.push(new Koordinaatit(0, 0));
+        pino.lisaa(new Koordinaatit(0, 0));
         kayty[0][0] = true;
-        while (!pino.isEmpty()) {
+        while (!pino.onkoTyhja()) {
 
-            Koordinaatit p = pino.getFirst();
+            if (suurinPinonKoko < pino.getSize()) {
+                suurinPinonKoko = pino.getSize();
+            }
+
+            Koordinaatit p = (Koordinaatit) pino.PalautaEka();
 
             String suunnat = "";
 
-            if (p.x + 3 < peruuttava.length && !kayty[p.x + 3][p.y]) {
+            if (p.x + labyAskel < peruuttava.length
+                    && !kayty[p.x + labyAskel][p.y]) {
                 suunnat += 'o';
             }
 
-            if (p.y - 3 >= 0 && !kayty[p.x][p.y - 3]) {
+            if (p.y - labyAskel >= 0 && !kayty[p.x][p.y - labyAskel]) {
                 suunnat += 'y';
             }
 
-            if (p.x - 3 >= 0 && !kayty[p.x - 3][p.y]) {
+            if (p.x - labyAskel >= 0 && !kayty[p.x - labyAskel][p.y]) {
                 suunnat += 'v';
             }
 
-            if (p.y + 3 < peruuttava.length && !kayty[p.x][p.y + 3]) {
+            if (p.y + labyAskel < peruuttava.length && !kayty[p.x][p.y + labyAskel]) {
                 suunnat += 'a';
             }
 
             if (suunnat.equals("")) {
-                pino.pollFirst();
+                pino.poistaEka();
 
                 continue;
             }
@@ -96,7 +107,7 @@ public class Labyrintinluoja {
      * @param height labyrintin korkeus
      * @return primin algoritmillä luotu labyrintti
      */
-    public int[][] prim(int width, int height) {
+    public int[][] prim(final int width, final int height) {
         l.luoUusiLabyrintti(width, height);
         int[][] laby = l.getLaby();
 
@@ -123,16 +134,20 @@ public class Labyrintinluoja {
             etu.remove(r);
             lisaaEtuun(uusiSolu, tilat, etu);
             String suunnat = "";
-            if (uusiSolu.x + 3 < prim.length && tilat[uusiSolu.x + 3][uusiSolu.y] == 1) {
+            if (uusiSolu.x + labyAskel < prim.length
+                    && tilat[uusiSolu.x + labyAskel][uusiSolu.y] == 1) {
                 suunnat += 'o';
             }
-            if (uusiSolu.y - 3 >= 0 && tilat[uusiSolu.x][uusiSolu.y - 3] == 1) {
+            if (uusiSolu.y - labyAskel >= 0
+                    && tilat[uusiSolu.x][uusiSolu.y - labyAskel] == 1) {
                 suunnat += 'y';
             }
-            if (uusiSolu.x - 3 >= 0 && tilat[uusiSolu.x - 3][uusiSolu.y] == 1) {
+            if (uusiSolu.x - labyAskel >= 0
+                    && tilat[uusiSolu.x - labyAskel][uusiSolu.y] == 1) {
                 suunnat += 'v';
             }
-            if (uusiSolu.y + 3 < prim.length && tilat[uusiSolu.x][uusiSolu.y + 3] == 1) {
+            if (uusiSolu.y + labyAskel < prim.length
+                    && tilat[uusiSolu.x][uusiSolu.y + labyAskel] == 1) {
                 suunnat += 'a';
             }
             r = rand.nextInt(suunnat.length());
@@ -148,31 +163,32 @@ public class Labyrintinluoja {
      * @param tilat tilaMatriisi, joka kertoo labyrinttien solujen tilat
      * @param etu arraylista johon solut lisätään
      */
-    public void lisaaEtuun(Koordinaatit k, int[][] tilat, ArrayList<Koordinaatit> etu) {
+    public void lisaaEtuun(final Koordinaatit k, final int[][] tilat,
+            final ArrayList<Koordinaatit> etu) {
 
-        if (k.x + 3 < prim.length && tilat[k.x + 3][k.y] == 0) {
+        if (k.x + labyAskel < prim.length && tilat[k.x + labyAskel][k.y] == 0) {
 
-            etu.add(new Koordinaatit(k.x + 3, k.y));
-            tilat[k.x + 3][k.y] = 2;
+            etu.add(new Koordinaatit(k.x + labyAskel, k.y));
+            tilat[k.x + labyAskel][k.y] = 2;
         }
 
-        if (k.y - 3 >= 0 && tilat[k.x][k.y - 3] == 0) {
-            etu.add(new Koordinaatit(k.x, k.y - 3));
-            tilat[k.x][k.y - 3] = 2;
-
-        }
-
-        if (k.x - 3 >= 0 && tilat[k.x - 3][k.y] == 0) {
-
-            etu.add(new Koordinaatit(k.x - 3, k.y));
-            tilat[k.x - 3][k.y] = 2;
+        if (k.y - labyAskel >= 0 && tilat[k.x][k.y - labyAskel] == 0) {
+            etu.add(new Koordinaatit(k.x, k.y - labyAskel));
+            tilat[k.x][k.y - labyAskel] = 2;
 
         }
 
-        if (k.y + 3 < prim.length && tilat[k.x][k.y + 3] == 0) {
+        if (k.x - labyAskel >= 0 && tilat[k.x - labyAskel][k.y] == 0) {
 
-            etu.add(new Koordinaatit(k.x, k.y + 3));
-            tilat[k.x][k.y + 3] = 2;
+            etu.add(new Koordinaatit(k.x - labyAskel, k.y));
+            tilat[k.x - labyAskel][k.y] = 2;
+
+        }
+
+        if (k.y + labyAskel < prim.length && tilat[k.x][k.y + labyAskel] == 0) {
+
+            etu.add(new Koordinaatit(k.x, k.y + labyAskel));
+            tilat[k.x][k.y + labyAskel] = 2;
 
         }
 
@@ -188,7 +204,8 @@ public class Labyrintinluoja {
      * @param k labyrinttikoordinaatti, josta lähdetään luomaan yhteyttä
      * @param prim labyrintti, joka on kyseessä
      */
-    public void lisaaSolu(char s, Koordinaatit k, int[][] prim) {
+    public void lisaaSolu(final char s, final Koordinaatit
+            k, final int[][] prim) {
 
         if (s == 'o') {
             poistaSeinat(k.x + 2, k.y, prim);
@@ -214,17 +231,17 @@ public class Labyrintinluoja {
         }
 
     }
-    
-    
+
+
 
   /**
    * Palauttaa joko primin algoritmillä tai peruuttavalla haulla generoidun
    * labyrintin.
-   * 
+   *
    * @param c merkki joka kertoo mikä labyrintti palautetaan.
    * @return labyrintti
    */
-    public int[][] getLaby(char c) {
+    public int[][] getLaby(final char c) {
 
         if (c == 'r') {
             return peruuttava;
@@ -244,30 +261,30 @@ public class Labyrintinluoja {
     protected void suunta(final char s, final Koordinaatit p, int[][] laby, boolean[][] kayty) {
         if (s == 'o') {
 
-            kayty[p.x + 3][p.y] = true;
-            pino.push(new Koordinaatit(p.x + 3, p.y));
+            kayty[p.x + labyAskel][p.y] = true;
+            pino.lisaa(new Koordinaatit(p.x + labyAskel, p.y));
 
             poistaSeinat(p.x + 2, p.y, laby);
             poistaSeinat(p.x + 2, p.y + 1, laby);
 
         } else if (s == 'y') {
-            kayty[p.x][p.y - 3] = true;
-            pino.push(new Koordinaatit(p.x, p.y - 3));
+            kayty[p.x][p.y - labyAskel] = true;
+            pino.lisaa(new Koordinaatit(p.x, p.y - labyAskel));
 
             poistaSeinat(p.x, p.y - 1, laby);
             poistaSeinat(p.x + 1, p.y - 1, laby);
 
         } else if (s == 'v') {
-            kayty[p.x - 3][p.y] = true;
-            pino.push(new Koordinaatit(p.x - 3, p.y));
+            kayty[p.x - labyAskel][p.y] = true;
+            pino.lisaa(new Koordinaatit(p.x - labyAskel, p.y));
 
             poistaSeinat(p.x - 1, p.y, laby);
             poistaSeinat(p.x - 1, p.y + 1, laby);
 
         } else if (s == 'a') {
 
-            kayty[p.x][p.y + 3] = true;
-            pino.push(new Koordinaatit(p.x, p.y + 3));
+            kayty[p.x][p.y + labyAskel] = true;
+            pino.lisaa(new Koordinaatit(p.x, p.y + labyAskel));
 
             poistaSeinat(p.x, p.y + 2, laby);
             poistaSeinat(p.x + 1, p.y + 2, laby);
@@ -283,13 +300,17 @@ public class Labyrintinluoja {
      * @param x poistettavan seinän x-koordinaatti
      * @param y poistettavan seinän y-koordinaatti
      */
-    protected void poistaSeinat(int x, int y, int[][] laby) {
+    protected void poistaSeinat(final int x, final int y, final int[][] laby) {
 
         laby[y][x] = 0;
     }
 
-    protected Deque getPino() {
+    protected Pino getPino() {
         return pino;
+    }
+
+    public int pinonSuurinKoko(){
+        return suurinPinonKoko;
     }
 
 }

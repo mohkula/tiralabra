@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import labyrintti.tiralabralabyrintti.Labyrintinluoja;
-import labyrintti.tiralabralabyrintti.Labyrintti;
 import labyrintti.tiralabralabyrintti.ReitinHakija;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -25,7 +24,7 @@ JLabel reitti;
  Labyrintinluoja ll;
       ReitinHakija rh;
 
-Freimi fr = new Freimi(380, 380, 1000, 0);
+Freimi fr = new Freimi(500, 520, 1000, 0);
     public Ui(){
         
         ll = new Labyrintinluoja();

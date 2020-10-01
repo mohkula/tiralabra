@@ -21,7 +21,8 @@ public class Grafiikat extends JPanel {
 
     public Grafiikat(int[][] laby) {
         this.laby = laby;
-
+        width = 500/laby.length;
+        height = 500/laby.length;
     }
 
     public void paintComponent(Graphics g) {
@@ -33,7 +34,7 @@ public class Grafiikat extends JPanel {
         g2d.setColor(Color.white);
 
 
-        int screencoordinatex = 0;
+        int screencoordinatex = 2;
         int screencoordinatey = 0;
         for (int y = 0; y < laby.length; y++) {
             for (int x = 0; x < laby.length; x++) {
@@ -51,7 +52,7 @@ public class Grafiikat extends JPanel {
                 }
                 screencoordinatex += width;
             }
-            screencoordinatex = 0;
+            screencoordinatex = 2;
             screencoordinatey += height;
         }
 
