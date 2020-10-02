@@ -37,8 +37,6 @@ public class LabyrintinluojaTest extends Labyrintinluoja {
 
     @Before
     public void setUp() {
-        l = new Labyrintti();
-        l.luoUusiLabyrintti(3, 3);
         ll = new Labyrintinluoja();
 
         ll.peruuttavaHaku(3,3);
@@ -57,7 +55,7 @@ public class LabyrintinluojaTest extends Labyrintinluoja {
     @Test
     public void poistaSeinatToimiiPeruuttavassaHaussa() {
         boolean lopeta = false;
-       
+
         int y = -1;
         int x = -1;
         int[][] peruuttava = ll.getLaby('r');
@@ -76,14 +74,14 @@ public class LabyrintinluojaTest extends Labyrintinluoja {
                 break;
             }
         }
-        
+
         assertEquals(peruuttava[x][y], 0);
     }
-    
+
        @Test
     public void poistaSeinatToimiiPriminAlgoritmissa() {
         boolean lopeta = false;
-        
+
            int y = -1;
         int x = -1;
         int[][] prim = ll.getLaby('p');
@@ -102,13 +100,13 @@ public class LabyrintinluojaTest extends Labyrintinluoja {
                 break;
             }
         }
-        
+
                 assertEquals(prim[x][y], 0);
 
     }
-    
-    
-    
+
+
+
 }
 
 
