@@ -33,6 +33,17 @@ return null;
 
     }
 
+    public Object haeIndeksilla(int i){
+
+
+
+
+return lista[i];
+
+
+
+    }
+
 
     public void poista(Object ob){
 
@@ -44,6 +55,14 @@ return null;
 
             }
         }
+
+    }
+
+    public void poistaIndeksilla(int i){
+
+        koko--;
+        siirraVasemmalle(i);
+
 
     }
 
@@ -73,6 +92,12 @@ return null;
         }
 
         return s;
+    }
+
+    public boolean onkoTyhja(){
+        if(koko == 0) return true;
+
+        return false;
     }
 
 

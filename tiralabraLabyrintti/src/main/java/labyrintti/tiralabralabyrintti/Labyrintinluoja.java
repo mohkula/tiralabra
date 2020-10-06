@@ -3,7 +3,8 @@ package labyrintti.tiralabralabyrintti;
 
 import java.util.Random;
 
-import java.util.ArrayList;
+import omatTietorakenteet.ArrayLista;
+//import java.util.ArrayList;
 import omatTietorakenteet.Pino;
 
 /**
@@ -119,7 +120,7 @@ suurinPinonKoko = 0;
         }
 
         int[][] tilat = new int[laby.length][laby.length];
-        ArrayList<Koordinaatit> etu = new ArrayList<>();
+        ArrayLista etu = new ArrayLista(laby.length*laby.length);
 
         tilat[0][0] = 1;
 
@@ -127,11 +128,11 @@ suurinPinonKoko = 0;
 
         lisaaEtuun(k, tilat, etu);
 
-        while (!etu.isEmpty()) {
-            int r = rand.nextInt(etu.size());
-            Koordinaatit uusiSolu = etu.get(r);
+        while (!etu.onkoTyhja()) {
+            int r = rand.nextInt(etu.GetKoko());
+            Koordinaatit uusiSolu = (Koordinaatit) etu.haeIndeksilla(r);
             tilat[uusiSolu.x][uusiSolu.y] = 1;
-            etu.remove(r);
+            etu.poistaIndeksilla(r);
             lisaaEtuun(uusiSolu, tilat, etu);
             String suunnat = "";
             if (uusiSolu.x + labyAskel < prim.length
@@ -164,30 +165,30 @@ suurinPinonKoko = 0;
      * @param etu arraylista johon solut lisätään
      */
     public void lisaaEtuun(final Koordinaatit k, final int[][] tilat,
-            final ArrayList<Koordinaatit> etu) {
+            final ArrayLista etu) {
 
         if (k.x + labyAskel < prim.length && tilat[k.x + labyAskel][k.y] == 0) {
 
-            etu.add(new Koordinaatit(k.x + labyAskel, k.y));
+            etu.lisaa(new Koordinaatit(k.x + labyAskel, k.y));
             tilat[k.x + labyAskel][k.y] = 2;
         }
 
         if (k.y - labyAskel >= 0 && tilat[k.x][k.y - labyAskel] == 0) {
-            etu.add(new Koordinaatit(k.x, k.y - labyAskel));
+            etu.lisaa(new Koordinaatit(k.x, k.y - labyAskel));
             tilat[k.x][k.y - labyAskel] = 2;
 
         }
 
         if (k.x - labyAskel >= 0 && tilat[k.x - labyAskel][k.y] == 0) {
 
-            etu.add(new Koordinaatit(k.x - labyAskel, k.y));
+            etu.lisaa(new Koordinaatit(k.x - labyAskel, k.y));
             tilat[k.x - labyAskel][k.y] = 2;
 
         }
 
         if (k.y + labyAskel < prim.length && tilat[k.x][k.y + labyAskel] == 0) {
 
-            etu.add(new Koordinaatit(k.x, k.y + labyAskel));
+            etu.lisaa(new Koordinaatit(k.x, k.y + labyAskel));
             tilat[k.x][k.y + labyAskel] = 2;
 
         }

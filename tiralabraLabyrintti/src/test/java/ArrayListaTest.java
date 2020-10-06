@@ -51,6 +51,18 @@ public class ArrayListaTest {
         int a = (int) lista.hae(2);
         assertEquals(a, 2);
     }
+    @Test
+    public void hakuIndeksillaPalauttaaOikein(){
+     lista = new ArrayLista(5);
+
+     lista.lisaa(2);
+     lista.lisaa(4);
+     lista.lisaa(7);
+     lista.lisaa(66);
+     lista.lisaa(8);
+
+        assertEquals(lista.haeIndeksilla(3), 66);
+    }
 
     @Test
     public void hakuPalauttaaNull(){
@@ -58,6 +70,15 @@ public class ArrayListaTest {
 
 
         assertEquals(lista.hae(6), null);
+    }
+    @Test
+    public void onkoTyhjaToimii(){
+        assertEquals(lista.onkoTyhja(), false);
+         for (int i = 0; i < 5; i++) {
+            lista.poista(i);
+        }
+         assertEquals(lista.onkoTyhja(), true);
+
     }
 
 
@@ -72,6 +93,21 @@ public class ArrayListaTest {
                    assertEquals(lista.hae(2), null);
 
 
+    }
+
+      @Test
+    public void poistoIndeksillaToimii(){
+        lista = new ArrayLista(5);
+
+     lista.lisaa(2);
+     lista.lisaa(4);
+     lista.lisaa(7);
+     lista.lisaa(66);
+     lista.lisaa(8);
+
+     lista.poistaIndeksilla(2);
+     assertEquals(lista.toString(), "24668");
+    assertEquals(lista.hae(7), null);
     }
 
 

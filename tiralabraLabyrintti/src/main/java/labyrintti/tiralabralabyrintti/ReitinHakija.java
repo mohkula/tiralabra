@@ -1,9 +1,6 @@
 package labyrintti.tiralabralabyrintti;
 
-
 import omatTietorakenteet.Jono;
-
-
 
 public class ReitinHakija {
 
@@ -80,8 +77,6 @@ public class ReitinHakija {
                     reittiLaby[y + 1][x + 1] = 3;
 
                     break;
-                    
-                    
 
             }
 
@@ -115,8 +110,8 @@ public class ReitinHakija {
         kayty[x][y] = true;
 
         while (!jono.onkoTyhja()) {
-          Object o = jono.palautaJaPoistaEka();
-k = (Kulkija)o;
+            Object o = jono.palautaJaPoistaEka();
+            k = (Kulkija) o;
             if (k.x == maaliX && k.y == maaliY) {
                 return k.getReitti();
             }
@@ -179,7 +174,7 @@ k = (Kulkija)o;
  */
 class Kulkija {
 
-    int x; 
+    int x;
     int y;
     String reitti;
 
