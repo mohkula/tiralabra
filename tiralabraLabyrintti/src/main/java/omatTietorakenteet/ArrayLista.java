@@ -47,7 +47,6 @@ return null;
 
     }
 
-//[1,2,3,4,5,]
 
     private void siirraVasemmalle(int index){
         for (int i = index+1; i <= koko; i++) {
