@@ -1,10 +1,9 @@
 package labyrintti.tiralabralabyrintti;
 
 
-import java.util.Random;
+//import java.util.Random;
 
 import omatTietorakenteet.ArrayLista;
-//import java.util.ArrayList;
 import omatTietorakenteet.Pino;
 
 /**
@@ -20,7 +19,7 @@ public class Labyrintinluoja {
     private Pino pino;
     private final int labyAskel = 3;
 
-    private Random rand = new Random();
+
     /**
      * Peruuttavalla haulla generoitu labyrintti.
      */
@@ -93,7 +92,15 @@ suurinPinonKoko = 0;
                 continue;
             }
 
-            int r = rand.nextInt(suunnat.length());
+
+              long nano = System.nanoTime();
+
+
+
+             int r = (int)nano % suunnat.length();
+                if(r <0) r = -1*r;
+
+
             suunta(suunnat.charAt(r), p, peruuttava, kayty);
 
         }
@@ -129,7 +136,16 @@ suurinPinonKoko = 0;
         lisaaEtuun(k, tilat, etu);
 
         while (!etu.onkoTyhja()) {
-            int r = rand.nextInt(etu.GetKoko());
+
+            long nano = System.nanoTime();
+
+
+            int r = ((int)nano % etu.GetKoko());
+
+            if(r <0) r = -1*r;
+
+
+
             Koordinaatit uusiSolu = (Koordinaatit) etu.haeIndeksilla(r);
             tilat[uusiSolu.x][uusiSolu.y] = 1;
             etu.poistaIndeksilla(r);
@@ -151,7 +167,9 @@ suurinPinonKoko = 0;
                     && tilat[uusiSolu.x][uusiSolu.y + labyAskel] == 1) {
                 suunnat += 'a';
             }
-            r = rand.nextInt(suunnat.length());
+            r = (int)System.nanoTime() % suunnat.length();
+
+              if(r <0) r = -1*r;
             lisaaSolu(suunnat.charAt(r), uusiSolu, prim);
         }
         return prim;

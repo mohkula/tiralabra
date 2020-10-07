@@ -28,7 +28,7 @@ public class Grafiikat extends JPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        this.setBackground(Color.blue);
+        this.setBackground(Color.black);
 
         g2d = (Graphics2D) g;
         g2d.setColor(Color.white);
@@ -46,8 +46,11 @@ public class Grafiikat extends JPanel {
 
                     g2d.setColor(Color.gray);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
-                } else {
+                } else if(laby[y][x] == 3){
                     g2d.setColor(Color.red);
+                    g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
+                }else if(laby[y][x] == 4){
+                    g2d.setColor(Color.BLUE);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
                 }
                 screencoordinatex += width;

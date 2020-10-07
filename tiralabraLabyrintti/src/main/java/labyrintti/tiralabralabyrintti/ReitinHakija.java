@@ -6,6 +6,9 @@ public class ReitinHakija {
 
     private Labyrintti l = new Labyrintti();
     private int[][] reittiLaby;
+    private boolean[][] kayty;
+    private String syvyysHakuReitti;
+
 
     public ReitinHakija() {
 
@@ -20,7 +23,7 @@ public class ReitinHakija {
      * @param y reitin alun y-koordinaatti
      * @return labyrintti, johon reitti on merkattu numerolla 3
      */
-    public int[][] luoReittiLaby(int[][] laby, String reitti, int x, int y) {
+    public int[][] luoReittiLaby(int[][] laby, String reitti, int x, int y, int arvo) {
         reittiLaby = new int[laby.length][laby.length];
         for (int i = 0; i < laby.length; i++) {
             for (int j = 0; j < laby.length; j++) {
@@ -34,22 +37,22 @@ public class ReitinHakija {
 
                 case 'o':
                     for (int i2 = 0; i2 < 3; i2++) {
-                        reittiLaby[y][x] = 3;
-                        reittiLaby[y + 1][x] = 3;
+                        reittiLaby[y][x] = arvo;
+                        reittiLaby[y + 1][x] = arvo;
                         x++;
                     }
-                    reittiLaby[y][x] = 3;
-                    reittiLaby[y + 1][x] = 3;
-                    reittiLaby[y][x + 1] = 3;
-                    reittiLaby[y + 1][x + 1] = 3;
+                    reittiLaby[y][x] = arvo;
+                    reittiLaby[y + 1][x] = arvo;
+                    reittiLaby[y][x + 1] = arvo;
+                    reittiLaby[y + 1][x + 1] = arvo;
 
                     break;
 
                 case 'y':
 
                     for (int i2 = 0; i2 < 3; i2++) {
-                        reittiLaby[y][x] = 3;
-                        reittiLaby[y][x + 1] = 3;
+                        reittiLaby[y][x] = arvo;
+                        reittiLaby[y][x + 1] = arvo;
                         y--;
                     }
 
@@ -58,8 +61,8 @@ public class ReitinHakija {
                 case 'v':
 
                     for (int i2 = 0; i2 < 3; i2++) {
-                        reittiLaby[y][x] = 3;
-                        reittiLaby[y + 1][x] = 3;
+                        reittiLaby[y][x] = arvo;
+                        reittiLaby[y + 1][x] = arvo;
                         x--;
                     }
 
@@ -67,14 +70,14 @@ public class ReitinHakija {
 
                 case 'a':
                     for (int i2 = 0; i2 < 3; i2++) {
-                        reittiLaby[y][x] = 3;
-                        reittiLaby[y][x + 1] = 3;
+                        reittiLaby[y][x] = arvo;
+                        reittiLaby[y][x + 1] = arvo;
                         y++;
                     }
-                    reittiLaby[y][x] = 3;
-                    reittiLaby[y][x + 1] = 3;
-                    reittiLaby[y + 1][x] = 3;
-                    reittiLaby[y + 1][x + 1] = 3;
+                    reittiLaby[y][x] = arvo;
+                    reittiLaby[y][x + 1] = arvo;
+                    reittiLaby[y + 1][x] = arvo;
+                    reittiLaby[y + 1][x + 1] = arvo;
 
                     break;
 
@@ -162,6 +165,86 @@ public class ReitinHakija {
         System.err.println("Reittiä ei löytynyt");
 
         return null;
+    }
+
+
+    public String haeReittiSyvyysHaulla(int x, int y, int[][] laby, int maaliX, int maaliY){
+        boolean lopetaRekursio = false;
+        syvyysHakuReitti = "ei reittiä";
+        kayty = new boolean[laby.length][laby.length];
+
+         haku(new Kulkija(x, y), laby, maaliX, maaliY, lopetaRekursio, null, "");
+         return syvyysHakuReitti;
+    }
+
+    private void haku(Kulkija k, int [][] laby, int maaliX, int maaliY, boolean lopetaRekursio, Kulkija edellinen, String suunta){
+
+        if(lopetaRekursio)return;
+
+
+
+        if(k.x < 0 || k.y < 0 || k.x >= laby.length || k.y >= laby.length){
+
+            return;
+        }
+        if(kayty[k.x][k.y]) return;
+
+
+       switch(suunta){
+           case "a":
+
+               if(laby[k.x-1][k.y] == 1) return;
+               break;
+
+               case "o":
+               if(laby[k.x][k.y-1] == 1) return;
+               break;
+
+               case "y":
+
+               if(laby[k.x+1][k.y] == 1) return;
+               break;
+
+               case "v":
+
+                   if(laby[k.x][k.y + 1] == 1) return;
+               break;
+       }
+
+
+        if(edellinen != null){
+            k.lisaaReittiin(edellinen.getReitti() + suunta);
+        }
+
+        if(k.x == maaliX && k.y == maaliY){
+           syvyysHakuReitti = k.getReitti();
+           lopetaRekursio = true;
+        }
+
+        kayty[k.x][k.y] = true;
+
+
+        try{
+
+
+        Kulkija uusik = new Kulkija(k.x+3,k.y);
+      //  uusik.lisaaReittiin(k.getReitti());
+        haku(uusik,laby,maaliX , maaliY, lopetaRekursio, k, "a");
+        uusik = new Kulkija(k.x,k.y + 3);
+       // uusik.lisaaReittiin(k.getReitti());
+        haku(uusik,laby,maaliX , maaliY, lopetaRekursio, k, "o");
+         uusik = new Kulkija(k.x - 3,k.y);
+       //  uusik.lisaaReittiin(k.getReitti());
+        haku(uusik,laby, maaliX , maaliY, lopetaRekursio, k, "y");
+         uusik = new Kulkija(k.x,k.y-3);
+        // uusik.lisaaReittiin(k.getReitti());
+        haku(uusik,laby, maaliX , maaliY, lopetaRekursio, k, "v");
+        }
+        catch(StackOverflowError e){
+            syvyysHakuReitti = "ei reittiä";
+            lopetaRekursio = true;
+            return;
+        }
     }
 
 }

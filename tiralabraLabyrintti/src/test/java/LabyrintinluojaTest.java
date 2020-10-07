@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 
-import java.util.Arrays;
-import java.util.Deque;
+
 import labyrintti.tiralabralabyrintti.Labyrintinluoja;
 import labyrintti.tiralabralabyrintti.Labyrintti;
 import org.junit.After;

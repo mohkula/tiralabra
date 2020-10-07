@@ -49,9 +49,16 @@ panel.setLayout(null);
           public void actionPerformed(ActionEvent arg0) {
 
 
-        int[][] laby = ll.peruuttavaHaku(Integer.parseInt(size.getText()),Integer.parseInt(size.getText()));
-        mikaLaby = 'r';
+        try{
+            int[][] laby = ll.peruuttavaHaku(Integer.parseInt(size.getText()),Integer.parseInt(size.getText()));
+             mikaLaby = 'r';
             fr.updateGraphics(laby);
+        }
+
+        catch(NumberFormatException nfe){
+
+        }
+
 
           }
         });
@@ -64,27 +71,58 @@ panel.setLayout(null);
           public void actionPerformed(ActionEvent arg0) {
 
 
-        int[][] laby = ll.prim(Integer.parseInt(size.getText()),Integer.parseInt(size.getText()));
+
+           try{
+
+
+                 int[][] laby = ll.prim(Integer.parseInt(size.getText()),Integer.parseInt(size.getText()));
         mikaLaby = 'p';
             fr.updateGraphics(laby);
+           }
+           catch(NumberFormatException nfe){
+
+           }
+
+
+
 
           }
         });
 
 
 
-         JButton etsiReittiNappi = new JButton("Etsi reitti");
-        etsiReittiNappi.addActionListener(new ActionListener() {
+         JButton etsireittiLeveys = new JButton("Etsi reitti leveyshaulla");
+        etsireittiLeveys.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent arg0) {
 
     int[][] laby = ll.getLaby(mikaLaby);
                   String   r = rh.haeReittiLeveysHaulla(0, 0, laby, laby.length - 2,laby.length - 2);
 
-       fr.updateGraphics(rh.luoReittiLaby(laby, r, 0, 0));
+       fr.updateGraphics(rh.luoReittiLaby(laby, r, 0, 0, 3));
 
 
         reitti.setText("reitin pituus: " + Integer.toString(r.length()));
+          }
+        });
+
+
+          JButton etsiReittiSyvyys = new JButton("Etsi reitti syvyyshaulla");
+        etsiReittiSyvyys.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent arg0) {
+
+    int[][] laby = ll.getLaby(mikaLaby);
+                  String   r = rh.haeReittiSyvyysHaulla(0, 0, laby, laby.length - 2,laby.length - 2);
+
+                  if(r.equals("ei reittiä")) reitti.setText("Stack overflow :( , kokeile leveyshakua");
+
+                  else{
+       fr.updateGraphics(rh.luoReittiLaby(laby, r, 0, 0, 4));
+
+
+        reitti.setText("reitin pituus: " + Integer.toString(r.length()));
+                  }
           }
         });
 
@@ -98,7 +136,8 @@ panel.setLayout(null);
         panel.add(size);
         panel.add(peruuttavaNappi);
         panel.add(primNappi);
-        panel.add(etsiReittiNappi);
+        panel.add(etsireittiLeveys);
+        panel.add(etsiReittiSyvyys);
          panel.add(reitti);
         frame.add(panel, BorderLayout.CENTER );
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
