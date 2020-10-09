@@ -9,7 +9,6 @@ public class ReitinHakija {
     private boolean[][] kayty;
     private String syvyysHakuReitti;
 
-
     public ReitinHakija() {
 
     }
@@ -167,80 +166,106 @@ public class ReitinHakija {
         return null;
     }
 
-
-    public String haeReittiSyvyysHaulla(int x, int y, int[][] laby, int maaliX, int maaliY){
+    /**
+     * Luo reitin käyttäen syvyyshakua.
+     *
+     * @param x reitin alun x-koordinaatti
+     * @param y reitin alun y-koordinaatti
+     * @param laby labyrintti josta reitti etsitään
+     * @param maaliX reitin lopun x-koordinaatti
+     * @param maaliYreitin lopun y-koordinaatti
+     * @return valmis reitti merkkijonona.
+     */
+    public String haeReittiSyvyysHaulla(int x, int y, int[][] laby, int maaliX, int maaliY) {
         boolean lopetaRekursio = false;
         syvyysHakuReitti = "ei reittiä";
         kayty = new boolean[laby.length][laby.length];
 
-         haku(new Kulkija(x, y), laby, maaliX, maaliY, lopetaRekursio, null, "");
-         return syvyysHakuReitti;
+        haku(new Kulkija(x, y), laby, maaliX, maaliY, lopetaRekursio, null, "");
+        return syvyysHakuReitti;
     }
 
-    private void haku(Kulkija k, int [][] laby, int maaliX, int maaliY, boolean lopetaRekursio, Kulkija edellinen, String suunta){
 
-        if(lopetaRekursio)return;
+    /**
+     * Apumetodi syvyyshaulle.
+     *
+     * @param k Kulkija joka aloittaa haun
+     * @param laby labyrintti josta reitti etsitään
+     * @param maaliX reitin lopun x-koordinaatti
+     * @param maaliYreitin lopun y-koordinaatti
+     * @param lopetaRekursio rekursion katkaisuun tarkoitettu boolean
+     * @param edellinen edellinen kulkija
+     * @param suunta suunta johon kulkija on liikkunut
+     */
+    private void haku(Kulkija k, int[][] laby, int maaliX, int maaliY, boolean lopetaRekursio, Kulkija edellinen, String suunta) {
 
+        if (lopetaRekursio) {
+            return;
+        }
 
-
-        if(k.x < 0 || k.y < 0 || k.x >= laby.length || k.y >= laby.length){
+        if (k.x < 0 || k.y < 0 || k.x >= laby.length || k.y >= laby.length) {
 
             return;
         }
-        if(kayty[k.x][k.y]) return;
+        if (kayty[k.x][k.y]) {
+            return;
+        }
 
+        switch (suunta) {
+            case "a":
 
-       switch(suunta){
-           case "a":
+                if (laby[k.x - 1][k.y] == 1) {
+                    return;
+                }
+                break;
 
-               if(laby[k.x-1][k.y] == 1) return;
-               break;
+            case "o":
+                if (laby[k.x][k.y - 1] == 1) {
+                    return;
+                }
+                break;
 
-               case "o":
-               if(laby[k.x][k.y-1] == 1) return;
-               break;
+            case "y":
 
-               case "y":
+                if (laby[k.x + 1][k.y] == 1) {
+                    return;
+                }
+                break;
 
-               if(laby[k.x+1][k.y] == 1) return;
-               break;
+            case "v":
 
-               case "v":
+                if (laby[k.x][k.y + 1] == 1) {
+                    return;
+                }
+                break;
+        }
 
-                   if(laby[k.x][k.y + 1] == 1) return;
-               break;
-       }
-
-
-        if(edellinen != null){
+        if (edellinen != null) {
             k.lisaaReittiin(edellinen.getReitti() + suunta);
         }
 
-        if(k.x == maaliX && k.y == maaliY){
-           syvyysHakuReitti = k.getReitti();
-           lopetaRekursio = true;
+        if (k.x == maaliX && k.y == maaliY) {
+            syvyysHakuReitti = k.getReitti();
+            lopetaRekursio = true;
         }
 
         kayty[k.x][k.y] = true;
 
+        try {
 
-        try{
-
-
-        Kulkija uusik = new Kulkija(k.x+3,k.y);
-      //  uusik.lisaaReittiin(k.getReitti());
-        haku(uusik,laby,maaliX , maaliY, lopetaRekursio, k, "a");
-        uusik = new Kulkija(k.x,k.y + 3);
-       // uusik.lisaaReittiin(k.getReitti());
-        haku(uusik,laby,maaliX , maaliY, lopetaRekursio, k, "o");
-         uusik = new Kulkija(k.x - 3,k.y);
-       //  uusik.lisaaReittiin(k.getReitti());
-        haku(uusik,laby, maaliX , maaliY, lopetaRekursio, k, "y");
-         uusik = new Kulkija(k.x,k.y-3);
-        // uusik.lisaaReittiin(k.getReitti());
-        haku(uusik,laby, maaliX , maaliY, lopetaRekursio, k, "v");
-        }
-        catch(StackOverflowError e){
+            Kulkija uusik = new Kulkija(k.x + 3, k.y);
+            //  uusik.lisaaReittiin(k.getReitti());
+            haku(uusik, laby, maaliX, maaliY, lopetaRekursio, k, "a");
+            uusik = new Kulkija(k.x, k.y + 3);
+            // uusik.lisaaReittiin(k.getReitti());
+            haku(uusik, laby, maaliX, maaliY, lopetaRekursio, k, "o");
+            uusik = new Kulkija(k.x - 3, k.y);
+            //  uusik.lisaaReittiin(k.getReitti());
+            haku(uusik, laby, maaliX, maaliY, lopetaRekursio, k, "y");
+            uusik = new Kulkija(k.x, k.y - 3);
+            // uusik.lisaaReittiin(k.getReitti());
+            haku(uusik, laby, maaliX, maaliY, lopetaRekursio, k, "v");
+        } catch (StackOverflowError e) {
             syvyysHakuReitti = "ei reittiä";
             lopetaRekursio = true;
             return;

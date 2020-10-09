@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import labyrintti.tiralabralabyrintti.Labyrintti;
 
 public class Ui {
 
@@ -43,14 +44,20 @@ panel.setLayout(null);
 
 
 
-        JButton peruuttavaNappi = new JButton("generoi labyrintti peruuttavalla haulla");
+        JButton peruuttavaNappi = new JButton("Generoi labyrintti peruuttavalla haulla");
         peruuttavaNappi.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent arg0) {
 
 
         try{
-            int[][] laby = ll.peruuttavaHaku(Integer.parseInt(size.getText()),Integer.parseInt(size.getText()));
+
+                 int x = Integer.parseInt(size.getText());
+
+                 if(x <0) return;
+            int[][] laby = ll.peruuttavaHaku(x,x);
+            Labyrintti l = new Labyrintti();
+
              mikaLaby = 'r';
             fr.updateGraphics(laby);
         }
@@ -65,7 +72,7 @@ panel.setLayout(null);
 
 
 
-        JButton primNappi = new JButton("generoi labyrintti Primin algoritmillä");
+        JButton primNappi = new JButton("Generoi labyrintti Primin algoritmillä");
         primNappi.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent arg0) {
@@ -74,14 +81,19 @@ panel.setLayout(null);
 
            try{
 
+                  int x = Integer.parseInt(size.getText());
 
-                 int[][] laby = ll.prim(Integer.parseInt(size.getText()),Integer.parseInt(size.getText()));
+                 if(x <0) return;
+
+                 int[][] laby = ll.prim(x,x);
         mikaLaby = 'p';
             fr.updateGraphics(laby);
            }
            catch(NumberFormatException nfe){
 
            }
+
+
 
 
 
@@ -122,6 +134,7 @@ panel.setLayout(null);
 
 
         reitti.setText("reitin pituus: " + Integer.toString(r.length()));
+
                   }
           }
         });
