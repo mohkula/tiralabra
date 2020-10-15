@@ -54,9 +54,9 @@ public class Labyrintti {
             System.out.println();
         }
     }
-
     /**
-     *Palauttaa labyrintin.
+     * Palauttaa labyrintin.
+     *
      * @return labyrintti
      */
     public int[][] getLaby() {

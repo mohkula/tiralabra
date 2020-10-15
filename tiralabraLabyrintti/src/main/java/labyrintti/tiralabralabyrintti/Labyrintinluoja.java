@@ -1,8 +1,6 @@
 package labyrintti.tiralabralabyrintti;
 
-
 //import java.util.Random;
-
 import omatTietorakenteet.ArrayLista;
 import omatTietorakenteet.Pino;
 
@@ -19,7 +17,6 @@ public class Labyrintinluoja {
     private Pino pino;
     private final int labyAskel = 3;
 
-
     /**
      * Peruuttavalla haulla generoitu labyrintti.
      */
@@ -32,10 +29,6 @@ public class Labyrintinluoja {
 
     private final Labyrintti l = new Labyrintti();
 
-
-    private int suurinPinonKoko;
-
-
     /**
      * luo labyrintin peruuttavalla haulla.
      *
@@ -44,7 +37,6 @@ public class Labyrintinluoja {
      * @return peruuttavalla haulla luotu labyrintti
      */
     public int[][] peruuttavaHaku(final int width, final int height) {
-suurinPinonKoko = 0;
         pino = new Pino(width * height);
         l.luoUusiLabyrintti(width, height);
 
@@ -60,10 +52,6 @@ suurinPinonKoko = 0;
         pino.lisaa(new Koordinaatit(0, 0));
         kayty[0][0] = true;
         while (!pino.onkoTyhja()) {
-
-            if (suurinPinonKoko < pino.getSize()) {
-                suurinPinonKoko = pino.getSize();
-            }
 
             Koordinaatit p = (Koordinaatit) pino.PalautaEka();
 
@@ -92,14 +80,12 @@ suurinPinonKoko = 0;
                 continue;
             }
 
+            long nano = System.nanoTime();
 
-              long nano = System.nanoTime();
-
-
-
-             int r = (int)nano % suunnat.length();
-                if(r <0) r = -1*r;
-
+            int r = (int) nano % suunnat.length();
+            if (r < 0) {
+                r = -1 * r;
+            }
 
             suunta(suunnat.charAt(r), p, peruuttava, kayty);
 
@@ -127,7 +113,7 @@ suurinPinonKoko = 0;
         }
 
         int[][] tilat = new int[laby.length][laby.length];
-        ArrayLista etu = new ArrayLista(laby.length*laby.length);
+        ArrayLista etu = new ArrayLista(laby.length * laby.length);
 
         tilat[0][0] = 1;
 
@@ -139,12 +125,11 @@ suurinPinonKoko = 0;
 
             long nano = System.nanoTime();
 
+            int r = ((int) nano % etu.GetKoko());
 
-            int r = ((int)nano % etu.GetKoko());
-
-            if(r <0) r = -1*r;
-
-
+            if (r < 0) {
+                r = -1 * r;
+            }
 
             Koordinaatit uusiSolu = (Koordinaatit) etu.haeIndeksilla(r);
             tilat[uusiSolu.x][uusiSolu.y] = 1;
@@ -167,9 +152,11 @@ suurinPinonKoko = 0;
                     && tilat[uusiSolu.x][uusiSolu.y + labyAskel] == 1) {
                 suunnat += 'a';
             }
-            r = (int)System.nanoTime() % suunnat.length();
+            r = (int) System.nanoTime() % suunnat.length();
 
-              if(r <0) r = -1*r;
+            if (r < 0) {
+                r = -1 * r;
+            }
             lisaaSolu(suunnat.charAt(r), uusiSolu, prim);
         }
         return prim;
@@ -223,8 +210,7 @@ suurinPinonKoko = 0;
      * @param k labyrinttikoordinaatti, josta lähdetään luomaan yhteyttä
      * @param prim labyrintti, joka on kyseessä
      */
-    public void lisaaSolu(final char s, final Koordinaatit
-            k, final int[][] prim) {
+    public void lisaaSolu(final char s, final Koordinaatit k, final int[][] prim) {
 
         if (s == 'o') {
             poistaSeinat(k.x + 2, k.y, prim);
@@ -251,15 +237,13 @@ suurinPinonKoko = 0;
 
     }
 
-
-
-  /**
-   * Palauttaa joko primin algoritmillä tai peruuttavalla haulla generoidun
-   * labyrintin.
-   *
-   * @param c merkki joka kertoo mikä labyrintti palautetaan.
-   * @return labyrintti
-   */
+    /**
+     * Palauttaa joko primin algoritmillä tai peruuttavalla haulla generoidun
+     * labyrintin.
+     *
+     * @param c merkki joka kertoo mikä labyrintti palautetaan.
+     * @return labyrintti
+     */
     public int[][] getLaby(final char c) {
 
         if (c == 'r') {
@@ -326,10 +310,6 @@ suurinPinonKoko = 0;
 
     protected Pino getPino() {
         return pino;
-    }
-
-    public int pinonSuurinKoko(){
-        return suurinPinonKoko;
     }
 
 }

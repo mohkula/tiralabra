@@ -1,90 +1,75 @@
-
 package omatTietorakenteet;
-
 
 public class ArrayLista {
 
     private int koko;
     private Object[] lista;
     int vikai;
-    public ArrayLista(int koko){
+
+    public ArrayLista(int koko) {
         lista = new Object[koko];
         vikai = 0;
         koko = 0;
     }
 
-    public void lisaa(Object o){
+    public void lisaa(Object o) {
         lista[vikai] = o;
         vikai++;
         koko++;
     }
 
-    public Object hae(Object ob){
+    public Object hae(Object ob) {
 
-      for(Object o : lista){
-          if (o.equals(ob)){
-              return o;
-          }
+        for (Object o : lista) {
+            if (o.equals(ob)) {
+                return o;
+            }
 
-      }
-return null;
-
-
+        }
+        return null;
 
     }
 
-    public Object haeIndeksilla(int i){
+    public Object haeIndeksilla(int i) {
 
-
-
-
-return lista[i];
-
-
+        return lista[i];
 
     }
 
-
-    public void poista(Object ob){
+    public void poista(Object ob) {
 
         for (int i = 0; i < koko; i++) {
-            if(lista[i].equals(ob)){
+            if (lista[i].equals(ob)) {
                 koko--;
-                    siirraVasemmalle(i);
-
+                siirraVasemmalle(i);
 
             }
         }
 
     }
 
-    public void poistaIndeksilla(int i){
+    public void poistaIndeksilla(int i) {
 
         koko--;
         siirraVasemmalle(i);
 
-
     }
 
-
-    private void siirraVasemmalle(int index){
-        for (int i = index+1; i <= koko; i++) {
-            lista[i-1] = lista[i];
+    private void siirraVasemmalle(int index) {
+        for (int i = index + 1; i <= koko; i++) {
+            lista[i - 1] = lista[i];
 
         }
 
         vikai--;
 
-
     }
 
-
-
-    public int GetKoko(){
+    public int GetKoko() {
         return koko;
     }
 
-    public String toString(){
+    public String toString() {
         String s = "";
 
         for (int i = 0; i < koko; i++) {
@@ -94,16 +79,12 @@ return lista[i];
         return s;
     }
 
-    public boolean onkoTyhja(){
-        if(koko == 0) return true;
+    public boolean onkoTyhja() {
+        if (koko == 0) {
+            return true;
+        }
 
         return false;
     }
-
-
-
-
-
-
 
 }

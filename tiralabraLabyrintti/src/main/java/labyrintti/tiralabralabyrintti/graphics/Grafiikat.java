@@ -19,10 +19,10 @@ public class Grafiikat extends JPanel {
 
     Labyrintti l = new Labyrintti();
 
-    public Grafiikat(int[][] laby , int freimix, int freimiy) {
+    public Grafiikat(int[][] laby, int freimix, int freimiy) {
         this.laby = laby;
-        width = freimix/laby.length;
-        height = freimiy/laby.length;
+        width = freimix / laby.length;
+        height = freimiy / laby.length;
     }
 
     public void paintComponent(Graphics g) {
@@ -32,7 +32,6 @@ public class Grafiikat extends JPanel {
 
         g2d = (Graphics2D) g;
         g2d.setColor(Color.white);
-
 
         int screencoordinatex = 2;
         int screencoordinatey = 0;
@@ -46,10 +45,10 @@ public class Grafiikat extends JPanel {
 
                     g2d.setColor(Color.gray);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
-                } else if(laby[y][x] == 3){
+                } else if (laby[y][x] == 3) {
                     g2d.setColor(Color.red);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
-                }else if(laby[y][x] == 4){
+                } else if (laby[y][x] == 4) {
                     g2d.setColor(Color.BLUE);
                     g2d.fillRect(screencoordinatex, screencoordinatey, width, height);
                 }
