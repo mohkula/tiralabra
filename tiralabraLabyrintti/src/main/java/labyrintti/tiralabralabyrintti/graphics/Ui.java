@@ -65,11 +65,15 @@ public class Ui {
 
                     }
                     int[][] laby = ll.peruuttavaHaku(x, x);
-                    Labyrintti l = new Labyrintti();
 
                     mikaLaby = 'r';
                     fr.updateGraphics(laby);
                 } catch (NumberFormatException nfe) {
+                    if (size.getText().equals("e")) {
+                        int[][] laby = ll.luoTestiLaby(5, 5);
+                        mikaLaby = 't';
+                          fr.updateGraphics(laby);
+                    }
 
                 }
 
@@ -100,7 +104,11 @@ public class Ui {
                     mikaLaby = 'p';
                     fr.updateGraphics(laby);
                 } catch (NumberFormatException nfe) {
-
+                    if (size.getText().equals("e")) {
+                        int[][] laby = ll.luoTestiLaby(5, 5);
+                        mikaLaby = 't';
+                          fr.updateGraphics(laby);
+                    }
                 }
 
             }

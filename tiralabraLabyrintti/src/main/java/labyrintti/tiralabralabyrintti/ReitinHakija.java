@@ -238,14 +238,14 @@ public class ReitinHakija {
 
             case "y":
 
-                if (laby[k.x + 1][k.y] == 1) {
+                if (laby[k.x + 2][k.y] == 1) {
                     return;
                 }
                 break;
 
             case "v":
 
-                if (laby[k.x][k.y + 1] == 1) {
+                if (laby[k.x][k.y + 2] == 1) {
                     return;
                 }
                 break;

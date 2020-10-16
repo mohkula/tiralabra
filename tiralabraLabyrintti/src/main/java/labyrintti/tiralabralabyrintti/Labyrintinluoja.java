@@ -27,6 +27,11 @@ public class Labyrintinluoja {
      */
     private int[][] prim;
 
+    /**
+     * Tyhja labyrintti
+     */
+    private int[][] testi;
+
     private final Labyrintti l = new Labyrintti();
 
     /**
@@ -49,8 +54,19 @@ public class Labyrintinluoja {
 
         boolean[][] kayty = new boolean[l.getLaby().length][l.getLaby().length];
 
-        pino.lisaa(new Koordinaatit(0, 0));
-        kayty[0][0] = true;
+        int aloitusX;
+        int aloitusY;
+
+        if (peruuttava.length % 2 == 0) {
+            aloitusX = (peruuttava.length / 2) - 1;
+            aloitusY = aloitusX;
+        } else {
+            aloitusX = (peruuttava.length / 2) - 2;
+            aloitusY = aloitusX;
+        }
+
+        pino.lisaa(new Koordinaatit(aloitusX, aloitusY));
+        kayty[aloitusX][aloitusY] = true;
         while (!pino.onkoTyhja()) {
 
             Koordinaatit p = (Koordinaatit) pino.PalautaEka();
@@ -115,9 +131,20 @@ public class Labyrintinluoja {
         int[][] tilat = new int[laby.length][laby.length];
         ArrayLista etu = new ArrayLista(laby.length * laby.length);
 
-        tilat[0][0] = 1;
+        int aloitusX;
+        int aloitusY;
 
-        Koordinaatit k = new Koordinaatit(0, 0);
+        if (prim.length % 2 == 0) {
+            aloitusX = (prim.length / 2) - 1;
+            aloitusY = aloitusX;
+        } else {
+            aloitusX = (prim.length / 2) - 2;
+            aloitusY = aloitusX;
+        }
+
+        tilat[aloitusX][aloitusY] = 1;
+
+        Koordinaatit k = new Koordinaatit(aloitusX, aloitusY);
 
         lisaaEtuun(k, tilat, etu);
 
@@ -250,6 +277,8 @@ public class Labyrintinluoja {
             return peruuttava;
         } else if (c == 'p') {
             return prim;
+        } else if (c == 't') {
+            return testi;
         }
         return null;
     }
@@ -295,6 +324,19 @@ public class Labyrintinluoja {
         } else {
             System.out.println(s + " ei oikea suunta");
         }
+    }
+
+    public int[][] luoTestiLaby(int width, int height) {
+
+        int[][] testiLaby = new int[(width * 3) - 1][(width * 3) - 1];
+
+        testiLaby[testiLaby.length - 1][(testiLaby.length / 2) + 1] = 1;
+        testiLaby[testiLaby.length - 2][(testiLaby.length / 2) + 1] = 1;
+        testiLaby[testiLaby.length - 3][(testiLaby.length / 2) + 1] = 1;
+
+        testi = testiLaby;
+        return testiLaby;
+
     }
 
     /**
