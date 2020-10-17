@@ -118,6 +118,8 @@ public class LabyrinttienVertailu {
 
         System.out.println(tulokset());
 
+
+   
         ui.luoVertailuGraafi(peruuttava, prim);
 
     }
