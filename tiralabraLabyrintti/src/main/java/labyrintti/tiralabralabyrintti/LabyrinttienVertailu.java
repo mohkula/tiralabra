@@ -1,9 +1,10 @@
 package labyrintti.tiralabralabyrintti;
 
-import labyrintti.tiralabralabyrintti.graphics.Freimi;
+import labyrintti.tiralabralabyrintti.graphics.Ui;
 
 public class LabyrinttienVertailu {
 
+    private Ui ui;
     private Labyrintinluoja ll;
     private ReitinHakija rh;
     private int labyMaara = 1000;
@@ -18,7 +19,9 @@ public class LabyrinttienVertailu {
     private int pisinReittiPrimSyvyyysHaulla;
     private int lyhyinReittiPrimSyvyysHaulla;
 
-    public LabyrinttienVertailu() {
+    public LabyrinttienVertailu(Ui ui) {
+
+        this.ui = ui;
         ll = new Labyrintinluoja();
         rh = new ReitinHakija();
         lyhyinReittiPeruuttavaLeveysHaulla = 0;
@@ -31,8 +34,6 @@ public class LabyrinttienVertailu {
         pisinReittiPrimSyvyyysHaulla = 0;
         lyhyinReittiPrimSyvyysHaulla = 0;
 
-//        fr = new Freimi(380, 380, 0, 0);
-//        fr2 = new Freimi(380, 380, 1000, 0);
     }
 
     /**
@@ -47,6 +48,9 @@ public class LabyrinttienVertailu {
         String reittiSyvyys = "";
         int[][] laby;
 
+        int[] peruuttava = new int[labyMaara];
+        int[] prim = new int[labyMaara];
+
         System.out.println("generoidaan " + labyMaara + " "
                 + koko + "X" + koko + " kokoista labyrinttiä peruuttavalla haulla");
         for (int i = 0; i < labyMaara; i++) {
@@ -55,6 +59,7 @@ public class LabyrinttienVertailu {
             reittiSyvyys = rh.haeReittiSyvyysHaulla(0, 0, laby, laby.length - 2, laby.length - 2);
 
             if (reittiSyvyys.equals("ei reittiä")) {
+                i--;
                 continue;
             }
 
@@ -75,11 +80,9 @@ public class LabyrinttienVertailu {
                     || lyhyinReittiPeruuttavaSyvyysHaulla > reittiSyvyys.length()) {
                 lyhyinReittiPeruuttavaSyvyysHaulla = reittiSyvyys.length();
 
-                if (lyhyinReittiPeruuttavaSyvyysHaulla <= 10) {
-
-                    System.out.println(reittiSyvyys);
-                }
             }
+
+            peruuttava[i] = reittiLeveys.length();
 
         }
 
@@ -109,33 +112,36 @@ public class LabyrinttienVertailu {
             if (lyhyinReittiPrimSyvyysHaulla == 0 || lyhyinReittiPrimSyvyysHaulla > reittiSyvyys.length()) {
                 lyhyinReittiPrimSyvyysHaulla = reittiSyvyys.length();
             }
+            prim[i] = reittiLeveys.length();
 
         }
 
-        System.out.println("");
-        System.out.println("Peruuttavalla haulla generoidut labyrintit:" + "\n");
+        System.out.println(tulokset());
 
-        System.out.println("Pisin reitti käyttäen leveyshakua: "
-                + pisinReittiPeruuttavaLeveysHaulla);
-        System.out.println("lyhyin reitti käyttäen leveyshakua: "
-                + lyhyinReittiPeruuttavaLeveysHaulla);
+        ui.luoVertailuGraafi(peruuttava, prim);
 
-        System.out.println("Pisin reitti käyttäen syvyyshakua: "
-                + pisinReittiPeruuttavaSyvyysHaulla);
-        System.out.println("lyhyin reitti käyttäen syvyyshakua: "
-                + lyhyinReittiPeruuttavaSyvyysHaulla + "\n");
+    }
 
-        System.out.println("Primin algoritmillä generoidut labyrintit:" + "\n");
+    public String tulokset() {
 
-        System.out.println("Pisin reitti Primin algoritmillä käyttäen leveyshakua: "
-                + pisinReittiPrimLeveysHaulla);
-        System.out.println("lyhyin reitti Primin algoritmillä käyttäen leveyshakua: "
-                + lyhyinReittiPrimLeveysHaulla);
-
-        System.out.println("Pisin reitti käyttäen syvyyshakua: "
-                + pisinReittiPrimSyvyyysHaulla);
-        System.out.println("lyhyin reitti käyttäen syvyyshakua: "
-                + lyhyinReittiPrimSyvyysHaulla);
+        return "Peruuttavalla haulla generoidut labyrintit:" + "\n"
+                + "Pisin reitti käyttäen leveyshakua: "
+                + pisinReittiPeruuttavaLeveysHaulla + "\n"
+                + "lyhyin reitti käyttäen leveyshakua: "
+                + +lyhyinReittiPeruuttavaLeveysHaulla + "\n"
+                + "Pisin reitti käyttäen syvyyshakua: " + "\n"
+                + +pisinReittiPeruuttavaSyvyysHaulla
+                + "lyhyin reitti käyttäen syvyyshakua: "
+                + lyhyinReittiPeruuttavaSyvyysHaulla + "\n"
+                + "Primin algoritmillä generoidut labyrintit:" + "\n"
+                + "Pisin reitti Primin algoritmillä käyttäen leveyshakua: "
+                + pisinReittiPrimLeveysHaulla + "\n"
+                + "lyhyin reitti Primin algoritmillä käyttäen leveyshakua: "
+                + lyhyinReittiPrimLeveysHaulla + "\n"
+                + "Pisin reitti käyttäen syvyyshakua: "
+                + pisinReittiPrimSyvyyysHaulla + "\n"
+                + "lyhyin reitti käyttäen syvyyshakua: "
+                + +lyhyinReittiPrimSyvyysHaulla + "\n";
 
     }
 

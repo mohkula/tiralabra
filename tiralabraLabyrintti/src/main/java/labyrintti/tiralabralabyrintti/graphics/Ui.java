@@ -12,8 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import labyrintti.tiralabralabyrintti.Labyrintti;
 import labyrintti.tiralabralabyrintti.LabyrinttienVertailu;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 public class Ui {
 
@@ -30,7 +34,7 @@ public class Ui {
 
     public Ui() {
 
-        lv = new LabyrinttienVertailu();
+        lv = new LabyrinttienVertailu(this);
 
         ll = new Labyrintinluoja();
         rh = new ReitinHakija();
@@ -72,7 +76,7 @@ public class Ui {
                     if (size.getText().equals("e")) {
                         int[][] laby = ll.luoTestiLaby(5, 5);
                         mikaLaby = 't';
-                          fr.updateGraphics(laby);
+                        fr.updateGraphics(laby);
                     }
 
                 }
@@ -107,7 +111,7 @@ public class Ui {
                     if (size.getText().equals("e")) {
                         int[][] laby = ll.luoTestiLaby(5, 5);
                         mikaLaby = 't';
-                          fr.updateGraphics(laby);
+                        fr.updateGraphics(laby);
                     }
                 }
 
@@ -181,6 +185,31 @@ public class Ui {
         frame.setTitle("");
         frame.pack();
         frame.setVisible(true);
+
+    }
+
+    public void luoVertailuGraafi(int[] taul1, int[] taul2) {
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries peruuttava = new XYSeries("Peruuttava haku");
+        XYSeries prim = new XYSeries("Primin algoritmi");
+
+        for (int i = 1; i <= taul1.length; i++) {
+            peruuttava.add(i, taul1[i - 1]);
+            prim.add(i, taul2[i - 1]);
+        }
+
+        dataset.addSeries(peruuttava);
+        dataset.addSeries(prim);
+
+        JFreeChart chart = ChartFactory.createXYLineChart("Labyrinttien vertailu",
+                "Labyrintin numero", "Reitin askelten määrä", dataset);
+
+        JPanel chartPanel = new ChartPanel(chart);
+
+        JFrame jf = new JFrame();
+        jf.add(chartPanel, BorderLayout.CENTER);
+        jf.setVisible(true);
+        jf.setSize(2000, 2000);
 
     }
 

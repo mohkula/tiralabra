@@ -82,7 +82,6 @@ public class ReitinHakijaTest {
      laby[13][5] = 1;
 
 
-     l.tulostaLabyrintti(laby);
 
     }
 
