@@ -8,3 +8,8 @@ ja vertailin reittien pituuksia keskenään. Peruuttalla haulla generoiduissa la
 lyhyin reitti vasemmasta yläkulmasta oikeaan alakulmaan oli lähes aina huomattavasti pidempi kuin Primin
 algoritmillä generoiduissa
 
+
+
+
+![TestikattavuusTiralabra](https://user-images.githubusercontent.com/62248076/96376983-cb5d9900-118a-11eb-84c0-703b8dabadea.png)
+
