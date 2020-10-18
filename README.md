@@ -8,3 +8,5 @@
 * [viikkoraportti 4](https://github.com/mohkula/tiralabra/blob/master/dokumentaatio/Viikkoraportti4.md)
 * [viikkoraportti 5](https://github.com/mohkula/tiralabra/blob/master/dokumentaatio/Viikkoraportti5.md)
 * [viikkoraportti 6](https://github.com/mohkula/tiralabra/blob/master/dokumentaatio/Viikkoraportti6.md)
+* [Toteutusdokumentti](https://github.com/mohkula/tiralabra/blob/master/dokumentaatio/Toteutusdokumentti.md)
+* [Testausdokumentti](https://github.com/mohkula/tiralabra/blob/master/dokumentaatio/Testausdokumentti.md)
