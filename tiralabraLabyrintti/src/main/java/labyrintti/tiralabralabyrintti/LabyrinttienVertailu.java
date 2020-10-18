@@ -88,6 +88,7 @@ public class LabyrinttienVertailu {
 
         System.out.println("generoidaan " + labyMaara + " " + koko
                 + "X" + koko + " kokoista labyrinttiä Primin algoritmillä");
+        System.out.println("");
         for (int i = 0; i < labyMaara; i++) {
             laby = ll.prim(koko, koko);
             reittiLeveys = rh.haeReittiLeveysHaulla(0, 0, laby, laby.length - 2, laby.length - 2);
@@ -118,8 +119,6 @@ public class LabyrinttienVertailu {
 
         System.out.println(tulokset());
 
-
-   
         ui.luoVertailuGraafi(peruuttava, prim);
 
     }
@@ -131,14 +130,15 @@ public class LabyrinttienVertailu {
                 + pisinReittiPeruuttavaLeveysHaulla + "\n"
                 + "lyhyin reitti käyttäen leveyshakua: "
                 + +lyhyinReittiPeruuttavaLeveysHaulla + "\n"
-                + "Pisin reitti käyttäen syvyyshakua: " + "\n"
-                + +pisinReittiPeruuttavaSyvyysHaulla
+                + "Pisin reitti käyttäen syvyyshakua: "
+                + pisinReittiPeruuttavaSyvyysHaulla + "\n"
                 + "lyhyin reitti käyttäen syvyyshakua: "
                 + lyhyinReittiPeruuttavaSyvyysHaulla + "\n"
+                + "\n"
                 + "Primin algoritmillä generoidut labyrintit:" + "\n"
-                + "Pisin reitti Primin algoritmillä käyttäen leveyshakua: "
+                + "Pisin reitti käyttäen leveyshakua: "
                 + pisinReittiPrimLeveysHaulla + "\n"
-                + "lyhyin reitti Primin algoritmillä käyttäen leveyshakua: "
+                + "lyhyin reitti käyttäen leveyshakua: "
                 + lyhyinReittiPrimLeveysHaulla + "\n"
                 + "Pisin reitti käyttäen syvyyshakua: "
                 + pisinReittiPrimSyvyyysHaulla + "\n"

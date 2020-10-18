@@ -54,18 +54,20 @@ public class LabyrinttienVertailuTest {
                 + 0 + "\n"
                 + "lyhyin reitti käyttäen leveyshakua: "
                 + +0 + "\n"
-                + "Pisin reitti käyttäen syvyyshakua: " + "\n"
-                + +0
+                + "Pisin reitti käyttäen syvyyshakua: " +
+                0 + "\n"
+
                 + "lyhyin reitti käyttäen syvyyshakua: "
                 + 0 + "\n"
+                + "\n"
                 + "Primin algoritmillä generoidut labyrintit:" + "\n"
-                + "Pisin reitti Primin algoritmillä käyttäen leveyshakua: "
+                + "Pisin reitti käyttäen leveyshakua: "
                 + 0 + "\n"
-                + "lyhyin reitti Primin algoritmillä käyttäen leveyshakua: "
+                + "lyhyin reitti käyttäen leveyshakua: "
                 + 0 + "\n"
                 + "Pisin reitti käyttäen syvyyshakua: "
                 + 0 + "\n"
                 + "lyhyin reitti käyttäen syvyyshakua: "
-                + +0 + "\n");
+                + 0 + "\n");
     }
 }
