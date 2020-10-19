@@ -159,7 +159,7 @@ public class Ui {
             }
         });
 
-        JButton Testit = new JButton("Vertaa");
+        JButton Testit = new JButton("Vertaile");
         Testit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
