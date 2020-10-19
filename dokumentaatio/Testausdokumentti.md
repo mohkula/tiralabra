@@ -22,3 +22,5 @@ kun taas peruuttavalla haulla generoiduissa pituus vaihteli 4000 askeleen verran
 
 Huomasin, että tavalla jolla labyrinttejä generoidaan,syntyy labyrinttejä joissa syvyyshaulla haettu reitti 
 oli aina samanpituinen kuin leveyshaulla.
+
+Vertailun voi toistaa 1000 labyrintillä, painamalla käyttöliittymästä löytyvää "vertaa" nappia.
