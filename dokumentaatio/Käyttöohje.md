@@ -1,4 +1,4 @@
-## käyttöohje
+## Käyttöohje
 
 Kun käynnistät ohjelman, voit käyttöliittymästä valita, millä algoritmillä labyrintti generoidaan. 
 Labyrintin koko ilmoitetaan yläreunassa sijaitsevaan tekstikenttään. Kun labyrintti on generoitu, 
