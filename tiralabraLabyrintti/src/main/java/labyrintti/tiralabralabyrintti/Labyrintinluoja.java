@@ -1,6 +1,5 @@
 package labyrintti.tiralabralabyrintti;
 
-//import java.util.Random;
 import omatTietorakenteet.ArrayLista;
 import omatTietorakenteet.Pino;
 
@@ -325,6 +324,13 @@ public class Labyrintinluoja {
             System.out.println(s + " ei oikea suunta");
         }
     }
+    /**
+     * Luo testilabyrintin jossa näkee paremmin leveys- ja syvyyshaun eron.
+     *
+     * @param width leveys
+     * @param height korkeus
+     * @return  testilabyrintti
+     */
 
     public int[][] luoTestiLaby(int width, int height) {
 
@@ -350,6 +356,10 @@ public class Labyrintinluoja {
         laby[y][x] = 0;
     }
 
+    /**
+     * Palauttaa pinon.
+     * @return pino
+     */
     protected Pino getPino() {
         return pino;
     }

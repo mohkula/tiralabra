@@ -1,9 +1,13 @@
 package omatTietorakenteet;
 
+/**
+ * Jonon toteutus
+ *
+ */
 public class Jono {
 
-    int size, vikai;
-    Object[] lista;
+    private int size, vikai;
+    private Object[] lista;
 
     public Jono(int koko) {
 
@@ -12,6 +16,11 @@ public class Jono {
 
     }
 
+    /**
+     * Lisää listaan objectin.
+     *
+     * @param o lisättävä objekti
+     */
     public void lisaa(Object o) {
         if (onkoTyhja()) {
             lista[0] = o;
@@ -24,6 +33,11 @@ public class Jono {
         size++;
     }
 
+    /**
+     * Palauttaa ja poistaa jonon ensimmäisen objektin.
+     *
+     * @return ensimmäinen objekti
+     */
     public Object palautaJaPoistaEka() {
         Object o = lista[0];
 

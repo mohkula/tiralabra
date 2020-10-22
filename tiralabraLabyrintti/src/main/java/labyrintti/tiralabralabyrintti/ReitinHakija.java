@@ -5,8 +5,20 @@ import omatTietorakenteet.Jono;
 public class ReitinHakija {
 
     private Labyrintti l = new Labyrintti();
+
+    /**
+     * labyrintti, johon reitti merkataan.
+     */
     private int[][] reittiLaby;
+
+    /**
+     * Merkitään labyrintin solut joissa on käyty.
+     */
     private boolean[][] kayty;
+
+    /**
+     * Syvyyshaulla haettu reitti.
+     */
     private String syvyysHakuReitti;
 
     public ReitinHakija() {
@@ -22,8 +34,8 @@ public class ReitinHakija {
      * @param y reitin alun y-koordinaatti
      * @return labyrintti, johon reitti on merkattu numerolla 3
      */
-    public int[][] luoReittiLaby(int[][] laby
-            , String reitti, int x, int y, int arvo) {
+    public int[][] luoReittiLaby(int[][] laby,
+            String reitti, int x, int y, int arvo) {
         reittiLaby = new int[laby.length][laby.length];
         for (int i = 0; i < laby.length; i++) {
             for (int j = 0; j < laby.length; j++) {
@@ -102,8 +114,8 @@ public class ReitinHakija {
      * @param maaliY maalin y-koordinaatti
      * @return reitti merkkijonona
      */
-    public String haeReittiLeveysHaulla(int x, int y, int[][] laby
-            , int maaliX, int maaliY) {
+    public String haeReittiLeveysHaulla(int x, int y, int[][] laby,
+            int maaliX, int maaliY) {
 
         if (laby[y][x] == 1 || laby[maaliY][maaliX] == 1) {
             return null;

@@ -1,9 +1,14 @@
 package omatTietorakenteet;
 
+/**
+ * Pinon toteutus.
+ *
+ * @author mahi
+ */
 public class Pino {
 
-    int size, ekai;
-    Object[] lista;
+    private int size, ekai;
+    private Object[] lista;
 
     public Pino(int koko) {
 
@@ -12,6 +17,11 @@ public class Pino {
 
     }
 
+    /**
+     * Lisää objektin pinoon.
+     *
+     * @param o lisättävä objekti
+     */
     public void lisaa(Object o) {
         if (onkoTyhja()) {
             lista[0] = o;
@@ -24,12 +34,20 @@ public class Pino {
         size++;
     }
 
+    /**
+     * Palauttaa ensimmäisen objektin
+     *
+     * @return ensimmäinen objekti
+     */
     public Object PalautaEka() {
 
         Object o = lista[ekai];
         return o;
     }
 
+    /**
+     * Poistaa ensimmäisen objektin
+     */
     public void poistaEka() {
 
         if (ekai >= 0) {

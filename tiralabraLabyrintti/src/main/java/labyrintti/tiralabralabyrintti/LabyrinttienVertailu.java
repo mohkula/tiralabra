@@ -7,7 +7,12 @@ public class LabyrinttienVertailu {
     private Ui ui;
     private Labyrintinluoja ll;
     private ReitinHakija rh;
+
+    /**
+     * Vertailussa generoitavien labyrinttien määrä
+     */
     private int labyMaara = 1000;
+
     private int pisinReittiPeruuttavaLeveysHaulla;
     private int lyhyinReittiPeruuttavaLeveysHaulla;
 
@@ -123,6 +128,10 @@ public class LabyrinttienVertailu {
 
     }
 
+    /**
+     * Palauttaa vertailussa syntyneet tulokset merkkijonona.
+     * @return tulokset merkkijonona
+     */
     public String tulokset() {
 
         return "Peruuttavalla haulla generoidut labyrintit:" + "\n"

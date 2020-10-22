@@ -19,18 +19,37 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+/**
+ * Käyttöliittymä.
+ *
+ */
 public class Ui {
 
-    char mikaLaby;
-    JFrame frame;
-    JPanel panel;
-    JTextField size;
-    JLabel reitti;
-    Labyrintinluoja ll;
-    LabyrinttienVertailu lv;
-    ReitinHakija rh;
+    /**
+     * Merkki jonka mukaan haetaan labyrintti Labyrintinluoja luokasta.
+     */
+    private char mikaLaby;
 
-    Freimi fr = new Freimi(1056, 1056, 1000, 0);
+    private JFrame frame;
+    private JPanel panel;
+
+    /**
+     * Labyrintin koko
+     */
+    private JTextField size;
+
+    /**
+     * haettu reitti
+     */
+    private JLabel reitti;
+    private Labyrintinluoja ll;
+    private LabyrinttienVertailu lv;
+    private ReitinHakija rh;
+
+    /**
+     * Ikkuna johon labyrintit piirretään.
+     */
+    private Freimi fr = new Freimi(1056, 1056, 1000, 0);
 
     public Ui() {
 
@@ -188,6 +207,12 @@ public class Ui {
 
     }
 
+    /**
+     * Luo vertailugraafin annettujen koordinaattien perusteella.
+     *
+     * @param taul1 koordinaatteja
+     * @param taul2 koordinaatteja
+     */
     public void luoVertailuGraafi(int[] taul1, int[] taul2) {
         XYSeriesCollection dataset = new XYSeriesCollection();
         XYSeries peruuttava = new XYSeries("Peruuttava haku");
