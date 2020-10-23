@@ -54,6 +54,7 @@ public class Labyrintti {
             System.out.println();
         }
     }
+
     /**
      * Palauttaa labyrintin.
      *

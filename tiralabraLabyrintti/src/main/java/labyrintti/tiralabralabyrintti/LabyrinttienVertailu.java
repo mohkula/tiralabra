@@ -130,6 +130,7 @@ public class LabyrinttienVertailu {
 
     /**
      * Palauttaa vertailussa syntyneet tulokset merkkijonona.
+     *
      * @return tulokset merkkijonona
      */
     public String tulokset() {

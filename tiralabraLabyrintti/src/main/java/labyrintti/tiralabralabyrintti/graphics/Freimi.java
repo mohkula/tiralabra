@@ -22,6 +22,7 @@ public class Freimi extends JFrame {
 
     /**
      * Päivittää ikkunassa näkyvän labyrintin annetun labyrintin mukaiseksi.
+     *
      * @param laby annettu labyrintti
      */
     public void updateGraphics(int[][] laby) {

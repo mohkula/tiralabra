@@ -324,12 +324,13 @@ public class Labyrintinluoja {
             System.out.println(s + " ei oikea suunta");
         }
     }
+
     /**
      * Luo testilabyrintin jossa näkee paremmin leveys- ja syvyyshaun eron.
      *
      * @param width leveys
      * @param height korkeus
-     * @return  testilabyrintti
+     * @return testilabyrintti
      */
 
     public int[][] luoTestiLaby(int width, int height) {
@@ -358,6 +359,7 @@ public class Labyrintinluoja {
 
     /**
      * Palauttaa pinon.
+     *
      * @return pino
      */
     protected Pino getPino() {
